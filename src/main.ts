@@ -1,9 +1,9 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import './index.css';
+import './index.scss';
 
-import Test from "./components/Test.vue"    // ts只能引入ts文件
-import Test2 from "./components/Test2.vue"
+import Home from "./views/Home.vue"    // ts只能引入ts文件
+import Doc from './views/Doc.vue'
 
 import { createWebHashHistory, createRouter } from 'vue-router';
 
@@ -11,8 +11,8 @@ const history = createWebHashHistory();
 const router = createRouter({
     history: history,
     routes: [
-        { path: "/", component: Test },
-        { path: "/test2", component: Test2 }
+        { path: "/", component: Home },
+        { path: "/document", component: Doc }
     ]
 });
 
