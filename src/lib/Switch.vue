@@ -50,5 +50,6 @@ span {
     width: $h2;
     background: white;
     border-radius: $h2 / 2;
+    transition: 250ms;
 }
 </style>
