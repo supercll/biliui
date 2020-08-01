@@ -1,6 +1,6 @@
 <template>
     <h1>Switch 文档</h1>
-    <Switch :value="checked" @input="checked = $event" />
+    <Switch v-model:value="checked" />
 </template>
 
 <script lang="ts">
