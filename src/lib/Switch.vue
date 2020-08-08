@@ -26,12 +26,12 @@ export default {
 
     setup(props, context) {
         const checked = ref(props.checked);
-        const inner = ref(props.checked ? "开启" : "关闭");
+        const inner = ref(props.checked ? "开" : "关");
         const onOff = ref(props.checked ? "inner-on" : "inner-off");
         watchEffect(() => {});
         const toggle = (e) => {
             checked.value = !checked.value;
-            inner.value = checked.value ? "开启" : "关闭";
+            inner.value = checked.value ? "开" : "关";
             onOff.value = `inner-${checked.value ? "on" : "off"}`;
         };
         return { toggle, checked, inner, onOff };
@@ -70,7 +70,7 @@ $h2: $h - 4px;
         transition: 0.4s;
     }
     .inner-on {
-        margin-left: -15px;
+        margin-left: -20px;
     }
     .inner-off {
         margin-left: 15px;
