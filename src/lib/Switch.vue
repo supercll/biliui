@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" scoped>
-import { ref, watchEffect, onMounted } from "vue";
+import { ref } from "vue";
 export default {
     name: "Switch",
     props: {
@@ -28,7 +28,6 @@ export default {
         const checked = ref(props.checked);
         const inner = ref(props.checked ? "开" : "关");
         const onOff = ref(props.checked ? "inner-on" : "inner-off");
-        watchEffect(() => {});
         const toggle = (e) => {
             checked.value = !checked.value;
             inner.value = checked.value ? "开" : "关";
