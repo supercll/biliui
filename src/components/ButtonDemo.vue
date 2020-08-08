@@ -1,5 +1,5 @@
 <template>
-    <h1>button 文档</h1>
+    <h1>Button 文档</h1>
 
     <hr />
     <Button type="link">默认链接</Button>
