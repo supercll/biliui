@@ -60,11 +60,12 @@ $blue: #1890ff;
     & + & {
         margin-left: 8px;
     }
+    
 
     .loading {
         box-sizing: border-box;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         position: relative;
         border: 2px dotted transparent;
         border-bottom-color: red;
@@ -107,7 +108,7 @@ $blue: #1890ff;
         }
     }
     &-danger {
-        background: rgb(223, 4, 4) !important;
+        background: #ff4d4f !important;
     }
     &:focus {
         outline: none;

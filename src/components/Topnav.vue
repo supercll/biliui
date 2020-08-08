@@ -1,10 +1,8 @@
 <template>
     <div class="topnav">
-        <div class="logo" @click="toggleMenu">LOGO</div>
-        <ul class="menu">
-            <li>菜单1</li>
-            <li>菜单2</li>
-        </ul>
+        <div class="logo" @click="toggleMenu">
+            <img src="../assets/bilibili.svg" alt />
+        </div>
         <span class="toggleAside" @click="toggleMenu"></span>
     </div>
 </template>
@@ -30,7 +28,8 @@ export default {
 
 <style lang="scss" scoped>
 .topnav {
-    background: pink;
+    z-index: 10;
+    background: #00a0d8;
     display: flex;
     padding: 16px;
     position: fixed;
@@ -58,12 +57,15 @@ export default {
         display: inline-block;
         width: 24px;
         height: 24px;
-        background: red;
+        background: url("../assets/menu.svg") no-repeat;
         position: absolute;
         left: 16px;
         top: 50%;
         transform: translateY(-50%);
         display: none;
+        &:hover {
+            color: #fb7299;
+        }
     }
     @media (max-width: 500px) {
         > .menu {

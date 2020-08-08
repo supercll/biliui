@@ -43,6 +43,7 @@ export default {
 $h: 24px;
 $h2: $h - 4px;
 .switch {
+    cursor: pointer;
     height: $h;
     width: $h * 2.2;
     border: none;

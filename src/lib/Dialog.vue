@@ -10,7 +10,7 @@
             <slot />
         </main>
         <footer>
-            <button v-for="action in actions" @click="action.fn">{{action.text}}</button>
+            <button v-for="action in actions" @click="action.fn" :key="action">{{action.text}}</button>
         </footer>
     </div>
 </template>

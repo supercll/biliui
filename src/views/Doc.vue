@@ -6,10 +6,10 @@
                 <h2>组件列表</h2>
                 <ol>
                     <li>
-                        <router-link to="/doc/switch">Switch 组件</router-link>
+                        <router-link to="/doc/button">Button 组件</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/button">Button 组件</router-link>
+                        <router-link to="/doc/switch">Switch 组件</router-link>
                     </li>
                     <li>
                         <router-link to="/doc/dialog">Dialog 组件</router-link>
@@ -70,21 +70,29 @@ export default {
     }
 }
 aside {
-    background: lightblue;
+    z-index: 9;
+    background: #ffffff;
     width: 150px;
-    padding: 16px;
     position: fixed;
     top: 0;
     left: 0;
     padding-top: 70px;
     height: 100%;
-
+    border-right: solid 1px #ddd;
     > h2 {
         margin-bottom: 4px;
+        text-align: center;
     }
     > ol {
         > li {
-            padding: 4px 0;
+            background: white;
+            padding: 8px 0;
+            > a {
+                border-radius: 4px;
+                padding: 8px 0 8px 32px;
+                display: block;
+                height: 100%;
+            }
         }
     }
 }

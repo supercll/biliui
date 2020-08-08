@@ -11,6 +11,7 @@ import { createWebHashHistory, createRouter } from 'vue-router';
 const history = createWebHashHistory();
 export const router = createRouter({
     history: history,
+    linkActiveClass:"doc-active",
     routes: [
         { path: "/", component: Home },
         {
