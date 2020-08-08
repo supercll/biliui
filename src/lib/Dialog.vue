@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<script>
+<script lang='ts' scpoed>
 import { onMounted } from "vue";
 export default {
     name: "Dialog",
@@ -99,6 +99,9 @@ export default {
         width: 100%;
         right: 0;
         bottom: 0;
+        >button {
+            right: 0;
+        }
     }
 }
 </style>

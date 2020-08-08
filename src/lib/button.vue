@@ -13,7 +13,7 @@
     </template>
 </template>
 
-<script lang="ts">
+<script lang="ts" scpoed>
 import { ref, watchEffect } from "vue";
 export default {
     props: {

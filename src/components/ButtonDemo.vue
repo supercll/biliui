@@ -23,7 +23,7 @@
     <Button level="text" disabled="true">按钮</Button>
 </template>
 
-<script lang="ts">
+<script lang="ts" scpoed>
 import Button from "../lib/Button.vue";
 export default {
     name: "ButtonDemo",

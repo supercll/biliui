@@ -11,12 +11,13 @@ import { createWebHashHistory, createRouter } from 'vue-router';
 const history = createWebHashHistory();
 export const router = createRouter({
     history: history,
-    linkActiveClass:"doc-active",
+    linkExactActiveClass: "doc-active",
+    strict: true,
     routes: [
         { path: "/", component: Home },
         {
             path: "/doc", component: Doc, children: [
-                {path: "", component: DocDemo},
+                { path: "", component: DocDemo },
                 { path: 'switch', component: SwitchDemo },
                 { path: 'button', component: ButtonDemo },
                 { path: 'dialog', component: DialogDemo },

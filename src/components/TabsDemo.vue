@@ -3,7 +3,7 @@
 
 </template>
 
-<script lang="ts">
+<script lang="ts" scpoed>
 export default {
     name: "SwitchDemo",
 };

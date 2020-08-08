@@ -6,6 +6,9 @@
                 <h2>组件列表</h2>
                 <ol>
                     <li>
+                        <router-link to="/doc">组件总览</router-link>
+                    </li>
+                    <li>
                         <router-link to="/doc/button">Button 组件</router-link>
                     </li>
                     <li>
@@ -26,7 +29,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" scpoed>
 import Topnav from "../components/Topnav.vue";
 import { inject, Ref } from "vue";
 export default {

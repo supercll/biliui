@@ -18,12 +18,12 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" scpoed>
 import Dialog from "../lib/Dialog.vue";
 import { ref, createApp, h } from "vue";
 import { openDialog } from "../lib/openDialog";
 export default {
-    name: "SwitchDemo",
+    name: "DialogDemo",
     components: {
         Dialog,
     },
@@ -56,5 +56,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scpoed>
+button{
+    
+    padding: 4px 8px;
+    margin: 5px;
+}
 </style>

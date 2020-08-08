@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" scpoed>
 import { inject, Ref } from "vue";
 export default {
     name: "Topnav",
