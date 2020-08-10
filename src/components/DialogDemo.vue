@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scpoed>
+<style lang="scss" scoped>
 button{
     
     padding: 4px 8px;

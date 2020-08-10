@@ -38,7 +38,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 24px;
 $h2: $h - 4px;
 .switch {
@@ -49,7 +49,7 @@ $h2: $h - 4px;
     background: #bfbfbf;
     border-radius: $h/2;
     position: relative;
-    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(#fb7299, 0.1);
     transition: all 0.3s;
 
     &-icon {
@@ -80,7 +80,7 @@ $h2: $h - 4px;
     }
 
     &.checked {
-        background: #1890ff;
+        background: #fb7299;
     }
 
     &.checked > span {
