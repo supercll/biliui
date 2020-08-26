@@ -1,6 +1,6 @@
 <template>
 <h1 class="doc-header">Dialog 示例</h1>
-<div class="bili-div">
+<div class="componentShow">
     <h2>切换</h2>
     <Button @click="toggle">toggle</Button>
 </div>
@@ -13,7 +13,7 @@
         <strong>加粗的标题</strong>
     </template>
 </Dialog>
-<div class="bili-div">
+<div class="componentShow">
     <h2>通过按钮显示</h2>
     <Button @click="showDialog">show</Button>
 </div>
