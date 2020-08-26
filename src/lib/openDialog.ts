@@ -1,28 +1,33 @@
-import { createApp, h } from 'vue'
-//@ts-ignore
-import Dialog from "./Dialog.vue"
-
-export const openDialog = (actions) => {
-
+import Dialog from "./Dialog.vue";
+import { createApp, h } from "vue";
+export const openDialog = options => {
+    const { title, content, ok, cancel } = options;
     const div = document.createElement("div");
     document.body.appendChild(div);
     const close = () => {
         app.unmount(div);
         div.remove();
-    }
+    };
     const app = createApp({
-        render: () =>
-            h(
+        render() {
+            return h(
                 Dialog,
                 {
-                    actions,
-                    onClose: close
+                    visible: true,
+                    "onUpdate:visible": newVisible => {
+                        if (newVisible === false) {
+                            close();
+                        }
+                    },
+                    ok,
+                    cancel,
                 },
-                "你好"
-            ),
+                {
+                    title,
+                    content,
+                }
+            );
+        },
     });
     app.mount(div);
-    return () => {
-        app.unmount(div)
-    }
-}
+};

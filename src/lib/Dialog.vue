@@ -1,106 +1,149 @@
 <template>
-    <div class="dialog-wrapper" @click="onClickMask"></div>
-    <div class="dialog">
-        <header>
-            提示
-            <span class="close" @click="close">x</span>
-        </header>
-
-        <main>
-            <slot />
-        </main>
-        <footer>
-            <button v-for="action in actions" @click="action.fn" :key="action">{{action.text}}</button>
-        </footer>
-    </div>
+<template v-if="visible">
+    <Teleport to="body">
+        <div class="bili-dialog-overlay" @click="onClickOverlay"></div>
+        <div class="bili-dialog-wrapper">
+            <div class="bili-dialog">
+                <header>
+                    <slot name="title" />
+                    <span @click="close" class="bili-dialog-close"></span>
+                </header>
+                <main>
+                    <slot name="content" />
+                </main>
+                <footer>
+                    <Button level="main" @click="ok">OK</Button>
+                    <Button @click="cancel">Cancel</Button>
+                </footer>
+            </div>
+        </div>
+    </Teleport>
+</template>
+</template>
 </template>
 
-<script lang='ts' scpoed>
-import { onMounted } from "vue";
+<script lang="ts">
+import Button from "./Button.vue";
 export default {
-    name: "Dialog",
     props: {
-        colseClickMask: Boolean,
-        closeOnESC: Boolean,
-        actions: Array,
+        visible: {
+            type: Boolean,
+            default: false,
+        },
+        closeOnClickOverlay: {
+            type: Boolean,
+            default: true,
+        },
+        ok: {
+            type: Function,
+        },
+        cancel: {
+            type: Function,
+        },
+    },
+    components: {
+        Button,
     },
     setup(props, context) {
         const close = () => {
-            context.emit("close");
+            context.emit("update:visible", false);
         };
-        const onClickMask = () => {
-            props.colseClickMask && close();
+        const onClickOverlay = () => {
+            if (props.closeOnClickOverlay) {
+                close();
+            }
         };
-
-        const onKeyUp = (e) => {
-            e.keyCode === 27 && close();
+        const ok = () => {
+            if (props.ok?.() !== false) {
+                close();
+            }
         };
-
-        onMounted(() => {
-            document.addEventListener("keyup", onKeyUp);
-        });
-
-        onMounted(() => {
-            document.removeEventListener("keyup", onKeyUp);
-        });
-
+        const cancel = () => {
+            props.cancel?.();
+            close();
+        };
         return {
             close,
-            onClickMask,
+            onClickOverlay,
+            ok,
+            cancel,
         };
     },
 };
 </script>
 
 <style lang="scss">
-.dialog {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 200px;
-    min-height: 120px;
+$radius: 4px;
+$border-color: #d9d9d9;
+
+.bili-dialog {
     background: white;
-    border-radius: 5px;
-    &-wrapper {
+    border-radius: $radius;
+    box-shadow: 0 0 3px fade_out(black, 0.5);
+    min-width: 15em;
+    max-width: 90%;
+
+    &-overlay {
         position: fixed;
-        left: 0;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        background: rgba($color: #000000, $alpha: 0.5);
+        background: fade_out(black, 0.5);
+        z-index: 10;
     }
 
-    > header {
-        border-bottom: solid 1px #ddd;
-        padding: 4px 8px;
-        > .close {
+    &-wrapper {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 11;
+    }
+
+    >header {
+        padding: 12px 16px;
+        border-bottom: 1px solid $border-color;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 20px;
+    }
+
+    >main {
+        padding: 12px 16px;
+    }
+
+    >footer {
+        border-top: 1px solid $border-color;
+        padding: 12px 16px;
+        text-align: right;
+    }
+
+    &-close {
+        position: relative;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+
+        &::before,
+        &::after {
+            content: "";
             position: absolute;
-            right: -5px;
-            top: -5px;
-            background: #ddd;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+            height: 1px;
+            background: black;
+            width: 100%;
+            top: 50%;
+            left: 50%;
         }
-    }
 
-    > main {
-        padding: 4px 8px;
-    }
-    > footer {
-        border-top: solid 1px #ddd;
-        padding: 4px 8px;
-        position: absolute;
-        width: 100%;
-        right: 0;
-        bottom: 0;
-        >button {
-            right: 0;
+        &::before {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(45deg);
         }
     }
 }

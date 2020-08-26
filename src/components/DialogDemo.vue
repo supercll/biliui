@@ -1,65 +1,67 @@
 <template>
-    <h1>Dialog 文档</h1>
-    <h1>示例1</h1>
-    <div>
-        <button @click="visible = true">显示</button>
-        <button @click="visible = false">隐藏</button>
-        <Dialog
-            v-if="visible"
-            @close="visible = false"
-            :colseClickMask="false"
-            :closeOnESC="true"
-            :actions="actions"
-        >你好</Dialog>
-    </div>
-    <h1>示例2</h1>
-    <div @click="open">
-        <button>显示</button>
-    </div>
+<h1 class="doc-header">Dialog 示例</h1>
+<div class="bili-div">
+    <h2>切换</h2>
+    <Button @click="toggle">toggle</Button>
+</div>
+<Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
+    <template v-slot:content>
+        <strong>hi</strong>
+        <div>hi2</div>
+    </template>
+    <template v-slot:title>
+        <strong>加粗的标题</strong>
+    </template>
+</Dialog>
+<div class="bili-div">
+    <h2>通过按钮显示</h2>
+    <Button @click="showDialog">show</Button>
+</div>
 </template>
 
-<script lang="ts" scpoed>
+<script lang="ts">
 import Dialog from "../lib/Dialog.vue";
-import { ref, createApp, h } from "vue";
-import { openDialog } from "../lib/openDialog";
+import Button from "../lib/Button.vue";
+import {
+    ref,
+    h
+} from "vue";
+import {
+    openDialog
+} from "../lib/openDialog";
 export default {
-    name: "DialogDemo",
     components: {
         Dialog,
+        Button,
     },
     setup() {
-        const visible = ref(false);
-        const actions = [
-            {
-                text: "确定",
-                fn: () => (visible.value = false),
-            },
-            {
-                text: "取消",
-                fn: () => (visible.value = false),
-            },
-        ];
-        const open = () => {
-            const close = openDialog([
-                {
-                    text: "确定",
-                    fn: () => close(),
+        const x = ref(false);
+        const toggle = () => {
+            x.value = !x.value;
+        };
+        const f1 = () => {
+            return false;
+        };
+        const f2 = () => {};
+        const showDialog = () => {
+            openDialog({
+                title: h("strong", {}, "标题"),
+                content: "你好",
+                ok() {
+                    console.log("ok");
                 },
-            ]);
+                cancel() {
+                    console.log("cancel");
+                },
+            });
         };
         return {
-            visible,
-            actions,
-            open,
+            x,
+            toggle,
+            f1,
+            f2,
+            showDialog,
         };
     },
 };
 </script>
-
-<style lang="scss" scoped>
-button{
-    
-    padding: 4px 8px;
-    margin: 5px;
-}
-</style>
