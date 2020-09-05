@@ -1,22 +1,24 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ul,
 ol {
-  list-style: none;
+    list-style: none;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 
-  &:hover {
-    border-bottom: 1px solid;
-    cursor: pointer;
-  }
+    &:hover {
+        background-color: #fee3eb;
+        margin-bottom: -1px;
+        border-bottom: 1px solid black;
+        cursor: pointer;
+    }
 }
 
 h1,
@@ -25,7 +27,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 // body {
@@ -36,17 +38,17 @@ h6 {
 // }
 
 .doc-active {
-  background-color: rgba($color: #fb7299, $alpha: 0.2);
+    background-color: rgba($color: #fb7299, $alpha: 0.2);
 }
 
 .componentShow {
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 0 2px fade_out(black, 0.5);
-  padding: 10px 5px;
-  margin-bottom: 10px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 0 2px fade_out(black, 0.5);
+    padding: 10px 5px;
+    margin-bottom: 10px;
 }
 
 .doc-header {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
