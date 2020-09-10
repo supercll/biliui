@@ -6,7 +6,7 @@
                 <use xlink:href="#icon-tv" />
             </svg>
         </div>
-        <div class="backToHome" @click="backRouter">返回</div>
+        <div class="backToHome" @click="backRouter" v-if="path !== '/' ">返回</div>
     </div>
 </template>
 
@@ -34,7 +34,6 @@ export default {
             toggleMenu,
             path,
             backRouter,
-            backToHome,
         };
     },
 };
