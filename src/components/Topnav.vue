@@ -1,7 +1,9 @@
 <template>
     <div class="topnav">
         <div class="logo" @click="toggleMenu">
-            <img src="../assets/bilibili.svg" alt />
+            <svg class="icon">
+                <use xlink:href="#icon-tv" />
+            </svg>
         </div>
         <span class="toggleAside" @click="toggleMenu"></span>
     </div>
@@ -41,6 +43,10 @@ export default {
     > .logo {
         max-width: 6em;
         margin-right: auto;
+        svg {
+            width: 42px;
+            height: 42px;
+        }
     }
     > .menu {
         display: flex;
@@ -57,6 +63,7 @@ export default {
         width: 24px;
         height: 24px;
         background: url("../assets/menu.svg") no-repeat;
+        background-size: 28px;
         position: absolute;
         left: 16px;
         top: 50%;

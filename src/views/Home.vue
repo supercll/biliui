@@ -10,6 +10,17 @@
             </p>
         </div>
     </div>
+    <div class="features">
+        <svg class="icon">
+            <use xlink:href="#icon-Vue" />
+        </svg>
+        <svg class="icon">
+            <use xlink:href="#icon-ts" />
+        </svg>
+        <svg class="icon">
+            <use xlink:href="#icon-bilibili" />
+        </svg>
+    </div>
 </template>
 
 <script lang="ts">
@@ -23,6 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$blue: #73c9e5;
 .main {
     background: #73c9e5;
     background: -webkit-linear-gradient(bottom left, #73c9e5, #fb739a);
@@ -35,20 +47,33 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: white;
 
     > .actions {
         padding: 8px 0;
 
         a {
             margin: 0 8px;
-            background: #fff;
+            background: $blue;
+            color: white;
             display: inline-block;
             $h: 28px;
-            height: $h;
-            line-height: $h;
-            border-radius: $h/2;
+            border-radius: 10%;
+            padding: 20px 5px;
             padding: 0 8px;
+            &:hover {
+                text-decoration: none;
+            }
         }
+    }
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    svg {
+        width: 64px;
+        height: 64px;
     }
 }
 </style>
