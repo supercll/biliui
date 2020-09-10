@@ -1,5 +1,5 @@
 <template>
-    <div class="topnav">
+    <div class="topnav" v-if="path !== '/' ">
         <div class="logo" @click="toggleMenu">
             <svg class="icon">
                 <use xlink:href="#icon-tv" />
@@ -11,6 +11,7 @@
 
 <script lang="ts" scpoed>
 import { inject, Ref } from "vue";
+import {useRoute} from "vue-router"
 export default {                                                                                                                                                                                                                                                                                                                                                                                    
     name: "Topnav",
     setup() {
@@ -19,9 +20,11 @@ export default {
         const toggleMenu = () => {
             menuVisible.value = !menuVisible.value;
         };
-
+        let route = useRoute();
+        let path = route.path
         return {
             toggleMenu,
+            path
         };
     },
 };
