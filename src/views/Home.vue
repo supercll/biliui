@@ -11,15 +11,58 @@
         </div>
     </div>
     <div class="features">
-        <svg class="icon">
-            <use xlink:href="#icon-Vue" />
-        </svg>
-        <svg class="icon">
-            <use xlink:href="#icon-ts" />
-        </svg>
-        <svg class="icon">
-            <use xlink:href="#icon-bilibili" />
-        </svg>
+        <div>
+            <svg class="icon">
+                <use xlink:href="#icon-Vue" />
+            </svg>
+            <ul>
+                <li>
+                    <h2>基于Vue3.0</h2>
+                </li>
+                <li>
+                    <p>使用Composition API</p>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <svg class="icon">
+                <use xlink:href="#icon-ts" />
+            </svg>
+            <ul>
+                <li>
+                    <h2>基于TypeScript</h2>
+                </li>
+                <li>
+                    <p>Vue3.0更好地支持了TS</p>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <svg class="icon">
+                <use xlink:href="#icon-bilibili" />
+            </svg>
+            <ul>
+                <li>
+                    <h2>哔哩哔哩风格</h2>
+                </li>
+                <li>
+                    <p>源自于对小破站的热爱</p>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <svg class="icon">
+                <use xlink:href="#icon-dengpao" />
+            </svg>
+            <ul>
+                <li>
+                    <h2>代码简洁易读</h2>
+                </li>
+                <li>
+                    <p>代码简洁易读</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -40,6 +83,7 @@ $blue: #73c9e5;
     background: -webkit-linear-gradient(bottom left, #73c9e5, #fb739a);
     background: -moz-linear-gradient(bottom left, #73c9e5, #fb739a);
     background: linear-gradient(to top right, #73c9e5, #fb739a);
+    clip-path: ellipse(80% 60% at 50% 20%);
 }
 .banner {
     padding: 100px 0;
@@ -72,8 +116,25 @@ $blue: #73c9e5;
     display: flex;
     justify-content: space-around;
     svg {
-        width: 64px;
-        height: 64px;
+        width: 52px;
+        height: 52px;
+        margin-right: 10px;
+    }
+    > div {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 500px) {
+    .features {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        justify-content: space-around;
+        height: 50vh;
     }
 }
 </style>

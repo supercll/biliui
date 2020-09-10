@@ -11,12 +11,11 @@
 
 <script lang="ts" scpoed>
 import { inject, Ref } from "vue";
-export default {
+export default {                                                                                                                                                                                                                                                                                                                                                                                    
     name: "Topnav",
     setup() {
         const menuVisible = inject<Ref<boolean>>("xxx");
         // console.log("topnav", menuVisible);
-
         const toggleMenu = () => {
             menuVisible.value = !menuVisible.value;
         };
