@@ -2,7 +2,11 @@
     <div class="main">
         <Topnav />
         <div class="banner">
+            <svg class="icon">
+                <use xlink:href="#icon-tv" />
+            </svg>
             <h1>哔哩UI</h1>
+
             <h2>一个简易的UI框架</h2>
             <p class="actions">
                 <a href="https://github.com/supercll/biliui">Github</a>
@@ -84,9 +88,14 @@ $blue: #73c9e5;
     background: -moz-linear-gradient(bottom left, #73c9e5, #fb739a);
     background: linear-gradient(to top right, #73c9e5, #fb739a);
     clip-path: ellipse(80% 60% at 50% 20%);
+
+    svg {
+        width: 56px;
+        height: 56px;
+    }
 }
 .banner {
-    padding: 100px 0;
+    padding: 60px 0 100px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,10 +110,11 @@ $blue: #73c9e5;
             background: $blue;
             color: white;
             display: inline-block;
-            $h: 28px;
-            border-radius: 10%;
-            padding: 20px 5px;
-            padding: 0 8px;
+            $h: 30px;
+            border-radius: 15%;
+            padding: 0 10px;
+            height: $h;
+            line-height: $h;
             &:hover {
                 text-decoration: none;
             }

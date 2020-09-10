@@ -1,18 +1,19 @@
 <template>
     <div class="topnav" v-if="path !== '/' ">
+        <span class="toggleAside" @click="toggleMenu"></span>
         <div class="logo" @click="toggleMenu">
             <svg class="icon">
                 <use xlink:href="#icon-tv" />
             </svg>
         </div>
-        <span class="toggleAside" @click="toggleMenu"></span>
+        <div class="backToHome" @click="backRouter">返回</div>
     </div>
 </template>
 
 <script lang="ts" scpoed>
 import { inject, Ref } from "vue";
-import {useRoute} from "vue-router"
-export default {                                                                                                                                                                                                                                                                                                                                                                                    
+import { useRoute, useRouter } from "vue-router";
+export default {
     name: "Topnav",
     setup() {
         const menuVisible = inject<Ref<boolean>>("xxx");
@@ -21,10 +22,19 @@ export default {
             menuVisible.value = !menuVisible.value;
         };
         let route = useRoute();
-        let path = route.path
+        let router = useRouter();
+        let path = route.path;
+        const backRouter = () => {
+            router.back();
+        };
+        // const backToHome = () => {
+        //     router.push("/");
+        // };
         return {
             toggleMenu,
-            path
+            path,
+            backRouter,
+            backToHome,
         };
     },
 };
@@ -40,8 +50,12 @@ export default {
     left: 0;
     width: 100%;
     z-index: 10;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    .backToHome {
+        float: right;
+        cursor: pointer;
+    }
     > .logo {
         max-width: 6em;
         margin-right: auto;
