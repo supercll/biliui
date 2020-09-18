@@ -3,8 +3,7 @@
     <div class="demo">
         <ButtonDemo />
     </div>
-    <div class="demo">
-    </div>
+    <div class="demo"></div>
     <div class="demo">
         <DialogDemo />
     </div>
@@ -19,7 +18,7 @@ export default {
     components: {
         ButtonDemo,
         DialogDemo,
-        SwitchDemo
+        SwitchDemo,
     },
 };
 </script>

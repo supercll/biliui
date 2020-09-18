@@ -3,8 +3,20 @@
         <Topnav class="nav" />
         <div class="content">
             <aside v-if="menuVisible">
+                <h2>文档</h2>
+                <ul>
+                    <li>
+                        <router-link to="/doc/intro">介绍</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/install">安装</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/start">开始</router-link>
+                    </li>
+                </ul>
                 <h2>组件列表</h2>
-                <ol>
+                <ul>
                     <li>
                         <router-link to="/doc">组件总览</router-link>
                     </li>
@@ -20,7 +32,7 @@
                     <li>
                         <router-link to="/doc/tabs">Tabs 组件</router-link>
                     </li>
-                </ol>
+                </ul>
             </aside>
             <main>
                 <router-view />
@@ -86,7 +98,7 @@ aside {
         margin-bottom: 4px;
         text-align: center;
     }
-    > ol {
+    > ul {
         > li {
             background: white;
             padding: 8px 0;
