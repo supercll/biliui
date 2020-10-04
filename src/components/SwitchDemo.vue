@@ -3,7 +3,7 @@
     <div class="demo">
         <h2>普通开关</h2>
         <div class="demo-component">
-            <Switch1Demo />
+            <component :is="Swicth1Demo" />
         </div>
         <div class="demo-code">
             <pre>{{Switch1Demo.__sourceCode}}</pre>
@@ -12,7 +12,7 @@
     <div class="demo">
         <h2>文字开关</h2>
         <div class="demo-component">
-            <Switch2Demo />
+            <component :is="Swicth3Demo" />
         </div>
         <div class="demo-actions">
             <Button>查看代码</Button>
@@ -24,7 +24,7 @@
     <div class="demo">
         <h2>图标开关</h2>
         <div class="demo-component">
-            <Switch3Demo />
+            <component :is="Swicth3Demo" />
         </div>
         <div class="demo-code">
             <pre>{{Switch3Demo.__sourceCode}}</pre>
@@ -44,9 +44,6 @@ export default {
     components: {
         Switch,
         Button,
-        Switch1Demo,
-        Switch2Demo,
-        Switch3Demo,
     },
     setup() {
         return {
