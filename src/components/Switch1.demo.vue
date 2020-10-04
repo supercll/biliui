@@ -1,3 +1,7 @@
+<demo>
+普通开关
+</demo>
+
 <template>
     <Switch v-model:value="isOp"></Switch>
 </template>
