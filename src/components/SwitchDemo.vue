@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import Switch1Demo from "../components/Switch1.demo.vue";
-import Switch2Demo from "../components/Switch2.demo.vue";
-import Switch3Demo from "../components/Switch3.demo.vue";
+import Switch1Demo from "../demos/Switch1.demo.vue";
+import Switch2Demo from "../demos/Switch2.demo.vue";
+import Switch3Demo from "../demos/Switch3.demo.vue";
 import Demo from "../components/Demo.vue";
 import { ref } from "vue";
 export default {
