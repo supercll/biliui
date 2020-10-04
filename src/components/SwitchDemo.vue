@@ -15,7 +15,6 @@
             <Button>查看代码</Button>
         </div>
         <div class="demo-code">
-            <pre v-text="Switch2Demo.__demo"></pre>
         </div>
     </div>
     <div class="demo">
@@ -33,8 +32,6 @@ import Switch1Demo from "../components/Switch1.demo.vue";
 import Switch2Demo from "../components/Switch2.demo.vue";
 import Switch3Demo from "../components/Switch3.demo.vue";
 import { ref } from "vue";
-import Switch1DemoVue from '../components/Switch1.demo.vue';
-console.log(Switch1Demo.__)
 export default {
     name: "SwitchDemo",
     components: {

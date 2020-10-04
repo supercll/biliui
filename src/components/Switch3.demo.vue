@@ -1,3 +1,4 @@
+<demo>logo开关</demo>
 <template>
     <Switch type="tv" v-model:value="isOp"></Switch>
 </template>
