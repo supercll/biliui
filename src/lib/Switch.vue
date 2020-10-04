@@ -1,23 +1,35 @@
 <template>
     <section v-if="type === 'text'">
-        <button class="switch" @click="toggle" :class="{checked}">
+        <button class="switch" @click="toggle" :class="{'switch-on' : value}">
             <span class :class="['switch-inner', onOff]">{{inner}}</span>
             <span class="switch-icon"></span>
         </button>
     </section>
+    <section v-else-if="type === 'tv'">
+        <button class="switch" @click="toggle" :class="{'switch-on' : value}">
+            <span class="switch-icon icon-tv">
+                <svg class="icon tv-off">
+                    <use xlink:href="#icon-tv" />
+                </svg>
+            </span>
+        </button>
+    </section>
     <section v-else>
-        <button class="switch" @click="toggle" :class="{checked}">
+        <button class="switch" @click="toggle" :class="{'switch-on' : value}">
             <span class="switch-icon"></span>
         </button>
     </section>
 </template>
 
 <script lang="ts" scoped>
-import { ref } from "vue";
+import { ref, reactive, nextTick } from "vue";
 export default {
     name: "Switch",
     props: {
-        checked: Boolean,
+        value: {
+            type: Boolean,
+            default: false,
+        },
         type: {
             type: String,
             default: "default",
@@ -25,15 +37,16 @@ export default {
     },
 
     setup(props, context) {
-        const checked = ref(props.checked);
-        const inner = ref(props.checked ? "开" : "关");
-        const onOff = ref(props.checked ? "inner-on" : "inner-off");
+        const inner = ref(props.value ? "开" : "关");
+        const onOff = ref(props.value ? "inner-on" : "inner-off");
         const toggle = (e) => {
-            checked.value = !checked.value;
-            inner.value = checked.value ? "开" : "关";
-            onOff.value = `inner-${checked.value ? "on" : "off"}`;
+            context.emit("update:value", !props.value);
+            nextTick(() => {
+                inner.value = props.value ? "开" : "关";
+                onOff.value = `inner-${props.value ? "on" : "off"}`;
+            });
         };
-        return { toggle, checked, inner, onOff };
+        return { toggle, inner, onOff };
     },
 };
 </script>
@@ -52,6 +65,19 @@ $h2: $h - 4px;
     box-shadow: 0 0 0 3px rgba(#fb7299, 0.1);
     transition: all 0.3s;
 
+    &-on {
+        background: #fb7299;
+    }
+
+    &-on > .switch-icon {
+        left: calc(100% - #{$h2} - 2px);
+    }
+    &-on:active {
+        > .switch-icon {
+            width: $h2 + 8px;
+            margin-left: -8px;
+        }
+    }
     &-icon {
         position: absolute;
         top: 2px;
@@ -61,6 +87,13 @@ $h2: $h - 4px;
         background: rgb(255, 255, 255, 0.8);
         border-radius: 50%;
         transition: all 300ms;
+    }
+    .icon-tv {
+        background: none;
+        border-radius: 0;
+    }
+    .icon {
+        transform: scale(2, 2);
     }
 
     &-inner {
@@ -79,24 +112,11 @@ $h2: $h - 4px;
         outline: none;
     }
 
-    &.checked {
-        background: #fb7299;
-    }
-
-    &.checked > span {
-        left: calc(100% - #{$h2} - 2px);
-    }
     &:active {
         > .switch-icon {
             width: $h2 + 4px;
         }
         box-shadow: 0 0 0 6px rgba(24, 144, 255, 0.8);
-    }
-    &.checked:active {
-        > .switch-icon {
-            width: $h2 + 8px;
-            margin-left: -8px;
-        }
     }
 }
 </style>

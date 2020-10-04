@@ -1,13 +1,13 @@
 <template>
     <h1 class="doc-header">Button 示例</h1>
-    <div class="componentShow">
+    <div class="demo">
         <h3>类型</h3>
         <Button theme="button">default</Button>
         <Button @click="onClick">click</Button>
         <Button theme="link">link</Button>
         <Button theme="text">test</Button>
     </div>
-    <div class="componentShow">
+    <div class="demo">
         <h3>大小</h3>
         <div>
             <Button size="big">big</Button>
@@ -25,7 +25,7 @@
             <Button size="small" theme="text">small</Button>
         </div>
     </div>
-    <div class="componentShow">
+    <div class="demo">
         <h3>颜色</h3>
         <dir>
             <Button level="main">main</Button>
@@ -43,13 +43,13 @@
             <Button theme="text" level="danger">danger-text</Button>
         </dir>
     </div>
-    <div class="componentShow">
+    <div class="demo">
         <h3>禁用按钮</h3>
         <Button disabled>禁用按钮</Button>
         <Button theme="link" disabled>禁用链接按钮</Button>
         <Button theme="text" disabled>禁用按钮</Button>
     </div>
-    <div class="componentShow">
+    <div class="demo">
         <h3>加载按钮</h3>
         <Button loading>loading</Button>
         <Button @click="onLoad" :loading="loading">{{status}}</Button>
