@@ -1,16 +1,8 @@
 <template>
     <h1>组件总览</h1>
-    <div class="demo">
-        <ButtonDemo />
-    </div>
-    <div class="demo">
-    </div>
-    <div class="demo">
-        <DialogDemo />
-    </div>
-    <div class="demo">
-        <TabsDemo />
-    </div>
+    <ButtonDemo />
+    <DialogDemo />
+    <TabsDemo />
 </template>
 
 <script lang="ts" scoped>

@@ -5,6 +5,9 @@
         <div class="demo-component">
             <Switch1Demo />
         </div>
+        <div class="demo-code">
+            <pre>{{Switch1Demo.__sourceCode}}</pre>
+        </div>
     </div>
     <div class="demo">
         <h2>文字开关</h2>
@@ -15,6 +18,7 @@
             <Button>查看代码</Button>
         </div>
         <div class="demo-code">
+            <pre>{{Switch2Demo.__sourceCode}}</pre>
         </div>
     </div>
     <div class="demo">
@@ -22,10 +26,13 @@
         <div class="demo-component">
             <Switch3Demo />
         </div>
+        <div class="demo-code">
+            <pre>{{Switch3Demo.__sourceCode}}</pre>
+        </div>
     </div>
 </template>
 
-<script lang="ts" scoped>
+<script lang="ts">
 import Switch from "../lib/Switch.vue";
 import Button from "../lib/button.vue";
 import Switch1Demo from "../components/Switch1.demo.vue";
