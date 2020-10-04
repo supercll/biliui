@@ -14,9 +14,15 @@ export default {
             const title = parsed.children[0].content;
             const main = file.split(parsed.loc.source).join("").trim();
             return `export default function (Component) {
+<<<<<<< HEAD
             Component.__sourceCode = ${JSON.stringify(main)}
             Component.__sourceCodeTitle = ${JSON.stringify(title)}
             }`.trim();
+=======
+        Component.__sourceCode = ${JSON.stringify(main)}
+        Component.__sourceCodeTitle = ${JSON.stringify(title)}
+      }`.trim();
+>>>>>>> 78ed0b1a6f5bd4f59036d1838871cbee3a11a307
         },
     },
 };
