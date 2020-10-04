@@ -1,16 +1,3 @@
 <template>
-    <article class="markdown-body" v-html="md"></article>
+    <MarkDown path="../markdown/start.md"></MarkDown>
 </template>
-
-<script>
-import md from "../markdown/start.md";
-export default {
-    name: "start",
-    data() {
-        return { md };
-    },
-};
-</script>
-
-<style>
-</style>
