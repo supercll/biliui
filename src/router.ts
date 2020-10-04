@@ -1,9 +1,6 @@
 import Home from "./views/Home.vue"; // ts只能引入ts文件
 import Doc from "./views/Doc.vue";
-import Intro from "./views/Intro.vue";
 import MarkDown from "./components/MarkDown.vue";
-import Install from "./views/Install.vue";
-import Start from "./views/Start.vue";
 import SwitchDemo from "./components/SwitchDemo.vue";
 import ButtonDemo from "./components/ButtonDemo.vue";
 import DialogDemo from "./components/DialogDemo.vue";
@@ -14,7 +11,7 @@ import { createWebHashHistory, createRouter } from "vue-router";
 import { h } from "vue";
 
 const history = createWebHashHistory();
-const x = path => h(MarkDown, { path, key: path });
+const md = filename => h(MarkDown, { path: `../markdown/${filename}.md`, key: filename });
 export const router = createRouter({
     history: history,
     linkExactActiveClass: "doc-active",
@@ -28,15 +25,15 @@ export const router = createRouter({
                 { path: "", component: DocDemo },
                 {
                     path: "intro",
-                    component: x("../markdown/intro.md"),
+                    component: md("intro"),
                 },
                 {
                     path: "install",
-                    component: x("../markdown/install.md"),
+                    component: md("install"),
                 },
                 {
                     path: "start",
-                    component: x("../markdown/start.md"),
+                    component: md("start"),
                 },
                 { path: "switch", component: SwitchDemo },
                 { path: "button", component: ButtonDemo },
