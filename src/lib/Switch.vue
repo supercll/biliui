@@ -1,12 +1,14 @@
 <template>
     <section v-if="type === 'text'">
-        <button class="switch" @click="toggle" :class="{'switch-on' : value}">
-            <span class :class="['switch-inner', onOff]">{{inner}}</span>
-            <span class="switch-icon"></span>
+        <button @click="toggle" :class="['switch',{'switch-on' : value}]">
+            <span
+                :class="['switch-inner', value ? 'inner-on': 'inner-off']"
+            >{{value ? onOff[0] : onOff[1]}}</span>
+            <span :class="['switch-icon', value ? '' : 'iconOff']"></span>
         </button>
     </section>
     <section v-else-if="type === 'tv'">
-        <button class="switch" @click="toggle" :class="{'switch-on' : value}">
+        <button @click="toggle" :class="['switch',{'switch-on' : value}]">
             <span class="switch-icon icon-tv">
                 <svg class="icon tv-off">
                     <use xlink:href="#icon-tv" />
@@ -15,13 +17,13 @@
         </button>
     </section>
     <section v-else>
-        <button class="switch" @click="toggle" :class="{'switch-on' : value}">
+        <button @click="toggle" :class="['switch',{'switch-on' : value}]">
             <span class="switch-icon"></span>
         </button>
     </section>
 </template>
 
-<script lang="ts" scoped>
+<script lang="ts">
 import { ref, reactive, nextTick } from "vue";
 export default {
     name: "Switch",
@@ -34,19 +36,18 @@ export default {
             type: String,
             default: "default",
         },
+        onOff: {
+            type: Array,
+            default: ["开", "关"],
+        },
     },
 
     setup(props, context) {
-        const inner = ref(props.value ? "开" : "关");
-        const onOff = ref(props.value ? "inner-on" : "inner-off");
+        console.log(props.onOff);
         const toggle = (e) => {
             context.emit("update:value", !props.value);
-            nextTick(() => {
-                inner.value = props.value ? "开" : "关";
-                onOff.value = `inner-${props.value ? "on" : "off"}`;
-            });
         };
-        return { toggle, inner, onOff };
+        return { toggle };
     },
 };
 </script>
@@ -87,6 +88,9 @@ $h2: $h - 4px;
         background: rgb(255, 255, 255, 0.8);
         border-radius: 50%;
         transition: all 300ms;
+    }
+    .iconOff {
+        background: rgb(#1296db, 0.8);
     }
     .icon-tv {
         background: none;

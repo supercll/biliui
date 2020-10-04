@@ -1,6 +1,7 @@
 <template>
     <h1>组件总览</h1>
     <ButtonDemo />
+    <SwitchDemo />
     <DialogDemo />
     <TabsDemo />
 </template>
@@ -11,7 +12,7 @@ import DialogDemo from "./DialogDemo.vue";
 import SwitchDemo from "./SwitchDemo.vue";
 import TabsDemo from "./TabsDemo.vue";
 export default {
-    name: "SwitchDemo",
+    name: "DocDemo",
     components: {
         ButtonDemo,
         DialogDemo,

@@ -1,3 +1,5 @@
+
+
 <demo>普通开关</demo>
 
 <template>
@@ -12,7 +14,7 @@ export default {
         Switch,
     },
     setup() {
-        const isOp = ref(false);
+        const isOp = ref(true);
         return {
             isOp,
         };
