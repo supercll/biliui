@@ -46,9 +46,9 @@ export default {
 $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
-$biliPink: #fb7299;
+$biliPink: #73c9e5;
 $radius: 4px;
-$red: red;
+$red: #fb7299;
 $grey: grey;
 .bili-button {
     vertical-align: middle;
