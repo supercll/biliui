@@ -96,7 +96,7 @@ aside {
     border-right: solid 1px #ddd;
     > h2 {
         margin-bottom: 4px;
-        text-align: center;
+        padding-left: 32px;
     }
     > ul {
         > li {
