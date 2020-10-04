@@ -7,7 +7,7 @@
         <div class="demo-actions">
             <Button @click="toggle">查看代码</Button>
         </div>
-        <div :class="['demo-code', {codeVisible}]" ref="codeRefs">
+        <div class="demo-code" ref="codeRefs">
             <pre
                 class="language-html"
                 v-html="Prism.highlight(component.__sourceCode, Prism.languages.html, 'html')"
@@ -19,6 +19,7 @@
 <script lang="ts">
 import Button from "../lib/Button.vue";
 import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 import "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 const Prism = (window as any).Prism;
@@ -27,12 +28,18 @@ export default {
         component: Object,
     },
     setup() {
+        const route = useRoute();
+        const routePath = route.path;
         const codeRefs = ref(null);
         let code, codeHight;
         onMounted(() => {
             code = codeRefs.value;
             codeHight = code.offsetHeight;
-            code.style.height = `${codeHight}px`;
+            if (routePath === "/doc") {
+                code.style.height = "0px";
+            } else {
+                code.style.height = `${codeHight}px`;
+            }
         });
         const toggle = () => {
             if (code.style.height === "0px") {
@@ -46,6 +53,7 @@ export default {
             Button,
             codeRefs,
             toggle,
+            routePath,
         };
     },
 };
