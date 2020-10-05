@@ -43,7 +43,7 @@ export default {
 .topnav {
     z-index: 10;
     display: flex;
-    padding: 16px;
+    padding: 12px 32px;
     position: fixed;
     top: 0;
     left: 0;
@@ -51,6 +51,8 @@ export default {
     z-index: 10;
     justify-content: space-between;
     align-items: center;
+    background: rgba($color: #ffffff, $alpha: 0.8);
+    box-shadow: 0px 2px 10px #73c9e5;
     .backToHome {
         float: right;
         cursor: pointer;
@@ -70,8 +72,6 @@ export default {
         > li {
             margin: 0 1em;
         }
-    }
-    > .toggleMenu {
     }
     > .toggleAside {
         display: inline-block;

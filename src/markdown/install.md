@@ -12,4 +12,4 @@ npm install bili-ui
 yarn add bili-ui
 ```
 
-下一节：[开始使用](#/doc/get-started)
+下一节：[开始使用](#/doc/start)

@@ -5,7 +5,7 @@
             <component :is="component" />
         </div>
         <div class="demo-actions">
-            <Button @click="toggle">查看代码</Button>
+            <Button @click="toggle">{{visible? "隐藏" : "查看"}}代码</Button>
         </div>
         <div class="demo-code" ref="codeRefs">
             <pre
@@ -31,20 +31,25 @@ export default {
         const route = useRoute();
         const routePath = route.path;
         const codeRefs = ref(null);
+        const visible = ref(true);
         let code, codeHight;
         onMounted(() => {
             code = codeRefs.value;
             codeHight = code.offsetHeight;
             if (routePath === "/doc") {
+                visible.value = false;
                 code.style.height = "0px";
             } else {
+                visible.value = true;
                 code.style.height = `${codeHight}px`;
             }
         });
         const toggle = () => {
             if (code.style.height === "0px") {
+                visible.value = true;
                 code.style.height = `${codeHight}px`;
             } else {
+                visible.value = false;
                 code.style.height = "0";
             }
         };
@@ -54,6 +59,7 @@ export default {
             codeRefs,
             toggle,
             routePath,
+            visible,
         };
     },
 };
