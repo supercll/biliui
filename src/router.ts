@@ -10,8 +10,12 @@ import DocDemo from "./components/DocDemo.vue";
 import { createWebHashHistory, createRouter } from "vue-router";
 import { h } from "vue";
 
+import intro from "./markdown/intro.md";
+import start from "./markdown/start.md";
+import install from "./markdown/install.md";
+
 const history = createWebHashHistory();
-const md = filename => h(MarkDown, { path: `../markdown/${filename}.md`, key: filename });
+const md = string => h(MarkDown, { content: string, key: string });
 export const router = createRouter({
     history: history,
     linkExactActiveClass: "doc-active",
@@ -25,16 +29,19 @@ export const router = createRouter({
                 { path: "", component: DocDemo },
                 {
                     path: "intro",
-                    component: md("intro"),
+                    component: md(intro),
                 },
                 {
                     path: "install",
-                    component: md("install"),
+                    component: md(install),
                 },
                 {
                     path: "start",
-                    component: md("start"),
+                    component: md(start),
                 },
+                { path: "intro", component: md(intro) },
+                { path: "start", component: md(start) },
+                { path: "install", component: md(install) },
                 { path: "switch", component: SwitchDemo },
                 { path: "button", component: ButtonDemo },
                 { path: "dialog", component: DialogDemo },
