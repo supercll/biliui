@@ -6,7 +6,7 @@
                 <use xlink:href="#icon-tv" />
             </svg>
         </div>
-        <div class="backToHome" @click="backRouter" v-if="path !== '/' ">返回</div>
+        <div class="backToHome" @click="backRouter" v-if="path !== '/' ">返回主页</div>
     </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
         let router = useRouter();
         let path = route.path;
         const backRouter = () => {
-            router.back();
+            router.push("/");
         };
         // const backToHome = () => {
         //     router.push("/");
