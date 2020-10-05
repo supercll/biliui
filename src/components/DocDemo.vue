@@ -1,7 +1,7 @@
 <template>
     <h1>组件总览</h1>
-    <ButtonDemo />
     <SwitchDemo />
+    <ButtonDemo />
     <DialogDemo />
     <TabsDemo />
 </template>

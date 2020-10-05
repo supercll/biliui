@@ -63,10 +63,13 @@
                     <h2>代码简洁易读</h2>
                 </li>
                 <li>
-                    <p>代码简洁易读</p>
+                    <p>简洁规范的代码演示</p>
                 </li>
             </ul>
         </div>
+    </div>
+    <div class="cover">
+        <img src="../assets/cover.jpg" alt />
     </div>
 </template>
 
@@ -82,6 +85,7 @@ export default {
 
 <style lang="scss" scoped>
 $blue: #73c9e5;
+
 .main {
     background: #73c9e5;
     background: -webkit-linear-gradient(bottom left, #73c9e5, #fb739a);
@@ -95,7 +99,7 @@ $blue: #73c9e5;
     }
 }
 .banner {
-    padding: 60px 0 100px 0;
+    padding: 20px 0 60px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,7 +125,9 @@ $blue: #73c9e5;
         }
     }
 }
-
+.cover {
+    text-align: center;
+}
 .features {
     display: flex;
     justify-content: space-around;
@@ -145,6 +151,9 @@ $blue: #73c9e5;
         transform: translate(-50%, 0);
         justify-content: space-around;
         height: 50vh;
+    }
+    .cover {
+        display: none;
     }
 }
 </style>
