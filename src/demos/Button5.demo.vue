@@ -9,8 +9,8 @@ loading按钮
 </template>
 
 <script lang="ts">
+import { Button } from "../lib/index";
 import { ref } from "vue";
-import Button from "../lib/Button.vue";
 export default {
     components: {
         Button,

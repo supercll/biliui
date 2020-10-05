@@ -5,7 +5,9 @@
 然后在你的代码中写入下面的代码
 
 ```
-import {Button, Tabs, Switch, Dialog} from "bili-ui"
+import "bilibili-ui/dist/lib/bili.css";
+import {Button, Tabs, Tab, Switch, Dialog, openDialog} from "bilibili-ui"
+
 ```
 
 就可以使用我提供的组件了。
@@ -21,9 +23,19 @@ import {Button, Tabs, Switch, Dialog} from "bili-ui"
   </div>
 </template>
 <script>
-import {Button, Tabs, Switch, Dialog} from "bili-ui"
+import {Button, Tabs, Switch, Dialog} from "bilibili-ui"
 export default {
   components: {Button}
 }
 </script>
+```
+## 注意
+copy示例代码时，应该将
+```
+import { Button } from "../lib/index";
+```
+替换为
+```
+import { Button } from "bilibili-ui";
+
 ```
