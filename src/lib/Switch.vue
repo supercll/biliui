@@ -18,13 +18,14 @@
     </section>
     <section v-else>
         <button @click="toggle" :class="['switch',{'switch-on' : value}]">
-            <span class="switch-icon"></span>
+            <span :class="['switch-icon', value ? '' : 'iconOff']"></span>
         </button>
     </section>
 </template>
 
 <script lang="ts">
 import { ref, reactive, nextTick } from "vue";
+import "./font_svg/iconfont.js";
 export default {
     name: "Switch",
     props: {
@@ -64,6 +65,11 @@ $h2: $h - 4px;
     position: relative;
     box-shadow: 0 0 0 3px rgba(#fb7299, 0.1);
     transition: all 0.3s;
+
+    svg {
+        width: 15px;
+        height: 15px;
+    }
 
     &-on {
         background: #fb7299;
@@ -119,7 +125,7 @@ $h2: $h - 4px;
         > .switch-icon {
             width: $h2 + 4px;
         }
-        box-shadow: 0 0 0 6px rgba(24, 144, 255, 0.8);
+        box-shadow: 0 0 3px 2px rgba(24, 144, 255, 0.8);
     }
 }
 </style>

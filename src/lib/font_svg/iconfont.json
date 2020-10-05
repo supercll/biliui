@@ -1,0 +1,51 @@
+{
+  "id": "2059769",
+  "name": "biliui",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5482997",
+      "name": "灯泡",
+      "font_class": "dengpao",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "8531324",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "5783129",
+      "name": "哔哩哔哩",
+      "font_class": "bilibili",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "6496026",
+      "name": "Vue",
+      "font_class": "Vue",
+      "unicode": "e799",
+      "unicode_decimal": 59289
+    },
+    {
+      "icon_id": "8840496",
+      "name": "哔哩哔哩",
+      "font_class": "tv",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "11155712",
+      "name": "typescript",
+      "font_class": "ts",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

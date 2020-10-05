@@ -3,18 +3,27 @@ import vue from "rollup-plugin-vue";
 import scss from "rollup-plugin-scss";
 import dartSass from "sass";
 import { terser } from "rollup-plugin-terser";
+import svg from "rollup-plugin-svg";
 
 export default {
     input: "src/lib/index.ts",
-    output: {
-        globals: {
-            vue: "Vue",
+    output: [
+        {
+            globals: {
+                vue: "Vue",
+            },
+            name: "bili",
+            file: "dist/lib/bili.js",
+            format: "umd",
+            plugins: [terser()],
         },
-        name: "Gulu",
-        file: "dist/lib/bili.js",
-        format: "umd",
-        plugins: [terser()],
-    },
+        {
+            name: "bili",
+            file: "dist/lib/bili.esm.js",
+            format: "es",
+            plugins: [terser()],
+        },
+    ],
     plugins: [
         scss({ include: /\.scss$/, sass: dartSass }),
         esbuild({
@@ -25,5 +34,6 @@ export default {
         vue({
             include: /\.vue$/,
         }),
+        svg(),
     ],
 };
