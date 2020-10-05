@@ -1,6 +1,8 @@
 {
-  "name": "vue3Wheel",
-  "version": "0.0.0",
+  "name": "bilibili-ui",
+  "version": "0.0.1",
+  "files": ["dist/lib/*"],
+  "main": "dist/lib/bili.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
