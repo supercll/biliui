@@ -1,7 +1,9 @@
-<demo>文字状态开关</demo>
+
+
+<demo>单文字开关（例如弹幕）</demo>
 
 <template>
-    <Switch type="text" v-model:value="isOp" :onOff="onOff"></Switch>
+    <Switch type="textin" v-model:value="isOp">弹</Switch>
 </template>
 
 <script lang="ts">
@@ -12,13 +14,10 @@ export default {
         Switch,
     },
     setup() {
-        const isOp = ref(false);
-        const onOff = ["on", "off"];
+        const isOp = ref(true);
         return {
             isOp,
-            onOff,
         };
     },
 };
 </script>
-

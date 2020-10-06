@@ -7,10 +7,17 @@
             <span :class="['switch-icon', value ? '' : 'iconOff']"></span>
         </button>
     </section>
+    <section v-else-if="type === 'textin'">
+        <button @click="toggle" :class="['switch',{'switch-on' : value}]">
+            <span :class="['switch-icon', value ? '' : 'iconOff']">
+                <slot />
+            </span>
+        </button>
+    </section>
     <section v-else-if="type === 'tv'">
         <button @click="toggle" :class="['switch',{'switch-on' : value}]">
             <span class="switch-icon icon-tv">
-                <svg class="icon" :style="{color: value ? '#1296db' : '#1d2c40'}">
+                <svg class="icon" :style="{color: value ? '#fb7299' : '#1d2c40'}">
                     <use xlink:href="#icon-tv" />
                 </svg>
             </span>
@@ -60,20 +67,14 @@ $h2: $h - 4px;
     height: $h;
     width: $h * 2.2;
     border: none;
-    background: #bfbfbf;
+    background: #757575;
     border-radius: $h/2;
     position: relative;
     box-shadow: 0 0 0 3px rgba(#fb7299, 0.1);
-    transition: all 0.3s;
-
-    svg {
-        width: 15px;
-        height: 15px;
-        transition: 0.3s all linear;
-    }
 
     &-on {
-        background: #fb7299;
+        background: #1296db;
+        color: #1296db;
     }
 
     &-on > .switch-icon {
@@ -93,10 +94,15 @@ $h2: $h - 4px;
         width: $h2;
         background: rgb(255, 255, 255, 0.8);
         border-radius: 50%;
-        transition: all 300ms;
+        transition: all 250ms ease-in-out;
     }
     .iconOff {
-        background: rgb(#1296db, 0.8);
+        background: rgb(#fb7299, 0.8);
+        color: white;
+    }
+    svg {
+        width: 15px;
+        height: 15px;
     }
     .icon-tv {
         background: none;
