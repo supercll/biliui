@@ -83,7 +83,7 @@ import { Button } from "bilibili-ui";
 
 ## vue2.x测试
 
-![1601979658891](C:\Users\lc\AppData\Roaming\Typora\typora-user-images\1601979658891.png)
+![1601979658891](https://github.com/supercll/biliui/edit/master/images/1601979658891.png)
 
 ```js
 <template>
