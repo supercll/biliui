@@ -10,7 +10,7 @@
     <section v-else-if="type === 'tv'">
         <button @click="toggle" :class="['switch',{'switch-on' : value}]">
             <span class="switch-icon icon-tv">
-                <svg class="icon tv-off">
+                <svg class="icon" :style="{color: value ? '#1296db' : '#1d2c40'}">
                     <use xlink:href="#icon-tv" />
                 </svg>
             </span>
@@ -69,6 +69,7 @@ $h2: $h - 4px;
     svg {
         width: 15px;
         height: 15px;
+        transition: 0.3s all linear;
     }
 
     &-on {

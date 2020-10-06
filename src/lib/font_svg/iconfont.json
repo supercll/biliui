@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "184542",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "742380",
+      "name": "qq",
+      "font_class": "qq",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "12974680",
+      "name": "贴吧",
+      "font_class": "tieba",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "13436023",
+      "name": "动 态",
+      "font_class": "dongtai",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "6781155",
+      "name": "分享",
+      "font_class": "share",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "2508796",
+      "name": "番剧推荐",
+      "font_class": "recommended",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "2742896",
+      "name": "赞",
+      "font_class": "praise",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "6834146",
+      "name": "收 藏",
+      "font_class": "collection",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "8614760",
+      "name": "icon_顶导_硬币",
+      "font_class": "coin",
+      "unicode": "e724",
+      "unicode_decimal": 59172
+    },
+    {
+      "icon_id": "14091457",
+      "name": "哔哩哔哩_番剧ico",
+      "font_class": "anime",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
       "icon_id": "5482997",
       "name": "灯泡",
       "font_class": "dengpao",

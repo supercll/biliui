@@ -2,7 +2,7 @@
     <div class="topnav" v-if="path !== '/' ">
         <span class="toggleAside" @click="toggleMenu"></span>
         <div class="logo" @click="toggleMenu">
-            <svg class="icon">
+            <svg class="icon" style="color: #1296db">
                 <use xlink:href="#icon-tv" />
             </svg>
         </div>

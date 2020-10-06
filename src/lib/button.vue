@@ -1,5 +1,10 @@
 <template>
-    <button class="bili-button" :class="classes" :disabled="disabled">
+    <button v-if="theme === 'func'" class="bili-button-func">
+        <svg class="icon">
+            <use :xlink:href="`#icon-${xh}`" />
+        </svg>
+    </button>
+    <button v-else class="bili-button" :class="classes" :disabled="disabled">
         <span v-if="loading" class="bili-loadingIndicator"></span>
         <slot />
     </button>
@@ -20,6 +25,10 @@ export default {
             type: String,
             default: "normal",
         },
+        xh: {
+            type: String,
+            default: "normal",
+        },
         disabled: {
             type: Boolean,
             default: false,
@@ -30,7 +39,7 @@ export default {
         },
     },
     setup(props) {
-        const { theme, size, level } = props;
+        const { theme, size, level, xh } = props;
         const classes = computed(() => {
             return {
                 [`bili-theme-${theme}`]: theme,
@@ -96,6 +105,28 @@ $grey: grey;
         &:hover,
         &:focus {
             background: darken(white, 5%);
+        }
+    }
+    &-func {
+        height: 28px;
+        width: 28px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+        transition: 150ms;
+        color: #757575;
+        svg {
+            height: $h;
+            width: $h;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:hover {
+            color: #00a1d6;
         }
     }
     &.bili-size-big {
