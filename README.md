@@ -83,7 +83,7 @@ import { Button } from "bilibili-ui";
 
 ## vue2.x测试
 
-![1601979658891](https://github.com/supercll/biliui/edit/master/images/1601979658891.png)
+![vue2.x](https://github.com/supercll/biliui/tree/master/images/1601979658891.png)
 
 ```js
 <template>
