@@ -1,8 +1,15 @@
+# 0.0.8版本
+- 修复：
+    - svg图标无法更改颜色的bug
+- 具体原因：
+    - 处于生产环境时svg需要通过fill属性更改颜色
+
 # biliui
 
-Vue3.0 实战：自定义 UI 组件库
+基于Vue3.0 + TypeScript 的一款UI组件库
 
-# 官方文档：http://ui.lhikari.com
+# 官方文档
+http://ui.lhikari.com
 
 # 介绍
 

@@ -1,6 +1,6 @@
 <template>
     <button v-if="theme === 'func'" class="bili-button-func">
-        <svg class="icon">
+        <svg :class="['icon', `icon-${xh}`]">
             <use :xlink:href="`#icon-${xh}`" />
         </svg>
     </button>
@@ -52,7 +52,7 @@ export default {
 };
 </script>
 <style lang="scss">
-$h: 32px;
+$h: 28px;
 $border-color: #d9d9d9;
 $color: #333;
 $biliPink: #73c9e5;
@@ -89,6 +89,24 @@ $grey: grey;
     &::-moz-focus-inner {
         border: 0;
     }
+    &-func {
+        cursor: pointer;
+        background: none;
+        border: none;
+        transition: 150ms;
+        padding: 0;
+        svg {
+            height: $h;
+            width: $h;
+            fill: #757575;
+            &:hover {
+                fill: #00a1d6;
+            }
+        }
+        &:focus {
+            outline: none;
+        }
+    }
     &.bili-theme-link {
         border-color: transparent;
         box-shadow: none;
@@ -107,28 +125,7 @@ $grey: grey;
             background: darken(white, 5%);
         }
     }
-    &-func {
-        height: 28px;
-        width: 28px;
-        cursor: pointer;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        background: none;
-        border: none;
-        transition: 150ms;
-        color: #757575;
-        svg {
-            height: $h;
-            width: $h;
-        }
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            color: #00a1d6;
-        }
-    }
+
     &.bili-size-big {
         font-size: 24px;
         height: 48px;
