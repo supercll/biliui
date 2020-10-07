@@ -1,6 +1,7 @@
 <demo>logo开关</demo>
 <template>
-    <Switch type="tv" v-model:value="isOp"></Switch>
+    <Switch type="logo" v-model:value="isOp1"></Switch>
+    <Switch type="logo" xh="lemon" v-model:value="isOp2"></Switch>
 </template>
 
 <script lang="ts">
@@ -11,9 +12,11 @@ export default {
         Switch,
     },
     setup() {
-        const isOp = ref(true);
+        const isOp1 = ref(true);
+        const isOp2 = ref(false);
         return {
-            isOp,
+            isOp1,
+            isOp2,
         };
     },
 };

@@ -10,6 +10,8 @@ function 功能型图标按钮
         <Button theme="func" xh="qq"></Button>
         <Button theme="func" xh="weibo"></Button>
         <Button theme="func" xh="tieba"></Button>
+        <Button theme="func" xh="set"></Button>
+        <Button theme="func" xh="add"></Button>
     </div>
 </template>
 
@@ -25,8 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
-    display: flex;
-    justify-content: space-between;
+button {
+    margin: 0 12px;
 }
 </style>

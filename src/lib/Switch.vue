@@ -14,11 +14,11 @@
             </span>
         </button>
     </section>
-    <section v-else-if="type === 'tv'">
+    <section v-else-if="type === 'logo'">
         <button @click="toggle" :class="['switch',{'switch-on' : value}]">
             <span class="switch-icon icon-tv">
                 <svg class="icon" :style="{color: value ? '#fb7299' : '#1d2c40'}">
-                    <use xlink:href="#icon-tv" />
+                    <use :xlink:href="`#icon-${xh}`" />
                 </svg>
             </span>
         </button>
@@ -47,6 +47,10 @@ export default {
         onOff: {
             type: Array,
             default: ["开", "关"],
+        },
+        xh: {
+            type: String,
+            default: "tv",
         },
     },
 
