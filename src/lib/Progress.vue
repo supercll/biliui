@@ -9,7 +9,9 @@
             <div class="bili-progress-bar" :style="barStyle"></div>
         </div>
         <div class="bili-progress-icon-wrap" :style="barStyle">
-            <div class="bili-progress-icon"></div>
+            <svg class="icon bili-progress-icon">
+                <use :xlink:href="`#icon-${xh}`" />
+            </svg>
         </div>
     </div>
 </template>
@@ -22,8 +24,13 @@ export default {
             type: Number,
             default: 20,
         },
+        xh: {
+            type: String,
+            default: "tv",
+        },
     },
     setup(props) {
+        const { xh } = props;
         const percentage = ref(props.percentage);
         const progressRef = ref(null);
         const moveData = {
@@ -33,7 +40,7 @@ export default {
             isPress: false,
             offsetLeft: 0,
         };
-        
+
         nextTick(() => {
             moveData.times = progressRef.value.offsetWidth / 100;
             moveData.offsetLeft = progressRef.value.getBoundingClientRect().left;
@@ -72,8 +79,6 @@ export default {
         return {
             barStyle,
             onMouseDown,
-            onMouseMove,
-            onMouseUp,
             progressRef,
             percentage,
         };
@@ -86,8 +91,11 @@ export default {
     position: relative;
     background: rgba(173, 176, 190, 0.4);
     width: 500px;
-    height: 4px;
+    height: 6px;
     cursor: pointer;
+    &:hover &-icon {
+        transform: scale(1) translateY(-50%);
+    }
 
     &-wrap {
         overflow: hidden;
@@ -110,12 +118,17 @@ export default {
 
     &-icon {
         position: absolute;
+        line-height: 100%;
         right: 0;
-        top: -50%;
-        width: 10px;
-        height: 10px;
-        background: red;
+        width: 15px;
+        height: 15px;
         transition: all 300ms;
+        
+        transform: scale(0) translateY(-50%);
+
+        &:active {
+            transform: scale(1) translateY(-50%);
+        }
     }
 }
 </style>

@@ -8,23 +8,16 @@
     {
       "icon_id": "7927957",
       "name": "跑步",
-      "font_class": "paobu",
+      "font_class": "run",
       "unicode": "e606",
       "unicode_decimal": 58886
     },
     {
       "icon_id": "14754579",
       "name": "哔哩哔哩动画",
-      "font_class": "bilibilidonghua",
+      "font_class": "progress_tv",
       "unicode": "e607",
       "unicode_decimal": 58887
-    },
-    {
-      "icon_id": "16303763",
-      "name": "网球",
-      "font_class": "wangqiu",
-      "unicode": "e60b",
-      "unicode_decimal": 58891
     },
     {
       "icon_id": "6487602",
