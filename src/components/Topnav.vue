@@ -1,6 +1,6 @@
 <template>
     <div class="topnav" v-if="path !== '/' ">
-        <span class="toggleAside" @click="toggleMenu"></span>
+        <div class="toggleAside" @click="toggleMenu"></div>
         <div class="logo" @click="toggleMenu">
             <svg class="icon" style="color: #1296db">
                 <use xlink:href="#icon-tv" />
@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .topnav {
     z-index: 10;
     display: flex;
@@ -58,8 +58,7 @@ export default {
         cursor: pointer;
     }
     > .logo {
-        max-width: 6em;
-        margin-right: auto;
+        transform: translateX(50%);
         svg {
             width: 42px;
             height: 42px;

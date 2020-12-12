@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $blue: #73c9e5;
 
 .main {
