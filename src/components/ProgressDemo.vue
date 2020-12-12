@@ -1,5 +1,6 @@
 <template>
     <h1 class="doc-header">Progress 示例</h1>
+    <!-- <Demo :component="ProgressDemo"/> -->
     <Progress />
 </template>
 
