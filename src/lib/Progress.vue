@@ -1,5 +1,10 @@
 <template>
-    <div class="bili-progress" ref="progressRef" @mousedown="onMouseDown($event)">
+    <div
+        class="bili-progress"
+        ref="progressRef"
+        @mousedown="onMouseDown($event)"
+        @mouseenter="showIcon"
+    >
         <div class="bili-progress-wrap">
             <div class="bili-progress-bar" :style="barStyle"></div>
         </div>
@@ -21,15 +26,17 @@ export default {
     setup(props) {
         const percentage = ref(props.percentage);
         const progressRef = ref(null);
-        let progressStart = 0;
-        let mouseStart = 0;
-        let times = 0;
-        let isPress = false;
-        let offsetLeft = 0;
-
+        const moveData = {
+            progressStart: 0,
+            mouseStart: 0,
+            times: 0,
+            isPress: false,
+            offsetLeft: 0,
+        };
+        
         nextTick(() => {
-            times = progressRef.value.offsetWidth / 100;
-            offsetLeft = progressRef.value.getBoundingClientRect().left;
+            moveData.times = progressRef.value.offsetWidth / 100;
+            moveData.offsetLeft = progressRef.value.getBoundingClientRect().left;
         });
 
         let barStyle = computed(() => {
@@ -40,22 +47,22 @@ export default {
 
         const onMouseMove = e => {
             e.preventDefault();
-            if (isPress) {
-                let x = progressStart + (e.clientX - mouseStart) / times;
+            if (moveData.isPress) {
+                let x = moveData.progressStart + (e.clientX - moveData.mouseStart) / moveData.times;
                 percentage.value = x;
                 if (percentage.value < 0) percentage.value = 0;
                 if (percentage.value > 100) percentage.value = 100;
             }
         };
         const onMouseDown = e => {
-            isPress = true;
-            mouseStart = e.clientX;
-            progressStart = (mouseStart - offsetLeft) / times;
-            percentage.value = progressStart;
+            moveData.isPress = true;
+            moveData.mouseStart = e.clientX;
+            moveData.progressStart = (moveData.mouseStart - moveData.offsetLeft) / moveData.times;
+            percentage.value = moveData.progressStart;
         };
 
         const onMouseUp = () => {
-            isPress = false;
+            moveData.isPress = false;
         };
 
         watchEffect(() => {
@@ -108,7 +115,6 @@ export default {
         width: 10px;
         height: 10px;
         background: red;
-        transform: scale(1);
         transition: all 300ms;
     }
 }
