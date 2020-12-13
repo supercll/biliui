@@ -26,7 +26,7 @@ export default {
         },
         xh: {
             type: String,
-            default: "tv",
+            default: "progress_tv",
         },
     },
     setup(props) {
@@ -64,7 +64,7 @@ export default {
         const onMouseDown = e => {
             moveData.isPress = true;
             moveData.mouseStart = e.clientX;
-            if (e.target.tagName === "svg") {
+            if (/[svg|use]/.test(e.target.tagName)) {
                 moveData.progressStart = percentage.value;
             } else {
                 moveData.progressStart =
@@ -94,18 +94,26 @@ export default {
 <style lang="scss" scoped>
 .bili-progress {
     position: relative;
-    background: rgba(173, 176, 190, 0.4);
-    width: 500px;
-    height: 6px;
+    width: 100%;
+    height: 4px;
+    border-radius: 10px;
     cursor: pointer;
+
+    &:hover,
+    &:active {
+        transform: scaleY(1.5);
+    }
+
     &:hover &-icon {
-        transform: scale(1) translateY(-50%);
+        transform: scaleX(1.5) translateY(-50%) translateX(50%);
     }
 
     &-wrap {
         overflow: hidden;
         width: 100%;
         height: 100%;
+        border-radius: 10px;
+        background: rgba(173, 176, 190, 0.4);
     }
 
     &-bar {
@@ -119,20 +127,25 @@ export default {
         top: 0;
         width: 100%;
         height: 100%;
+        text-align: right;
     }
 
     &-icon {
         position: absolute;
-        line-height: 100%;
+        top: 50%;
         right: 0;
         width: 15px;
         height: 15px;
         transition: all 300ms;
-
-        transform: scale(0) translateY(-50%);
+        transform: scale(1) translateY(-50%) translateX(50%);
 
         &:active {
-            transform: scale(1) translateY(-50%);
+            transform: scale(1) translateY(-50%) translateX(50%);
+        }
+    }
+    @media (max-width: 500px) {
+        .bili-progress-icon {
+            transform: scale(1) translateY(-50%) translateX(50%);
         }
     }
 }

@@ -6,7 +6,7 @@
         <Progress />
     </div>
     <div>
-        <Progress :percentage="percentage1" xh="progress_tv" />
+        <Progress :percentage="percentage1" xh="run" />
     </div>
     <div>
         <Progress :percentage="percentage2" xh="lemon" />
