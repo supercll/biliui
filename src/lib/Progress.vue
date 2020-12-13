@@ -64,8 +64,13 @@ export default {
         const onMouseDown = e => {
             moveData.isPress = true;
             moveData.mouseStart = e.clientX;
-            moveData.progressStart = (moveData.mouseStart - moveData.offsetLeft) / moveData.times;
-            percentage.value = moveData.progressStart;
+            if (e.target.tagName === "svg") {
+                moveData.progressStart = percentage.value;
+            } else {
+                moveData.progressStart =
+                    (moveData.mouseStart - moveData.offsetLeft) / moveData.times;
+                percentage.value = moveData.progressStart;
+            }
         };
 
         const onMouseUp = () => {
@@ -123,7 +128,7 @@ export default {
         width: 15px;
         height: 15px;
         transition: all 300ms;
-        
+
         transform: scale(0) translateY(-50%);
 
         &:active {
