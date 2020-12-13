@@ -35,9 +35,11 @@ export default {
         },
         ok: {
             type: Function,
+            default: Function.prototype
         },
         cancel: {
             type: Function,
+            default: Function.prototype
         },
     },
     components: {
@@ -53,12 +55,12 @@ export default {
             }
         };
         const ok = () => {
-            if (props.ok?.() !== false) {
+            if (props.ok() !== false) {
                 close();
             }
         };
         const cancel = () => {
-            props.cancel?.();
+            props.cancel();
             close();
         };
         return {

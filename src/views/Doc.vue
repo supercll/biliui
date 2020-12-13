@@ -33,6 +33,21 @@
                     <li>
                         <router-link to="/doc/tabs">Tabs 组件</router-link>
                     </li>
+                    <li>
+                        <router-link to="/doc/progress">Progress 组件</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/">Progress 组件</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/">Progress 组件</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/">Progress 组件</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/">Progress 组件</router-link>
+                    </li>
                 </ul>
             </aside>
             <main>
@@ -42,7 +57,7 @@
     </div>
 </template>
 
-<script lang="ts" scpoed>
+<script lang="ts" scoped>
 import Topnav from "../components/Topnav.vue";
 import { inject, Ref } from "vue";
 export default {
@@ -58,7 +73,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .layout {
     display: flex;
     flex-direction: column;
@@ -95,6 +110,14 @@ aside {
     padding-top: 70px;
     height: 100%;
     border-right: solid 1px #ddd;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 1px rgba(136, 136, 136, 0.3);
+        background-color: rgb(238, 241, 245);
+    }
     > h2 {
         margin-bottom: 4px;
         padding-left: 32px;
