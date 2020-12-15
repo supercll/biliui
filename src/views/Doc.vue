@@ -36,18 +36,6 @@
                     <li>
                         <router-link to="/doc/progress">Progress 组件</router-link>
                     </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
                 </ul>
             </aside>
             <main>
@@ -138,4 +126,4 @@ aside {
 main {
     overflow: auto;
 }
-</style> 
+</style>

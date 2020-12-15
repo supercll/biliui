@@ -16,8 +16,8 @@
     </div>
 </template>
 
-<script lang="ts">
-import { computed, nextTick, reactive, ref, watch, watchEffect } from "vue";
+<script lang="ts" scoped>
+import { computed, nextTick, onMounted, reactive, ref, watch, watchEffect } from "vue";
 export default {
     props: {
         percentage: {
@@ -71,16 +71,17 @@ export default {
                     (moveData.mouseStart - moveData.offsetLeft) / moveData.times;
                 percentage.value = moveData.progressStart;
             }
+
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
         };
 
         const onMouseUp = () => {
             moveData.isPress = false;
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
         };
-
-        watchEffect(() => {
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseup", onMouseUp);
-        });
+        watchEffect(() => {});
         return {
             barStyle,
             onMouseDown,
