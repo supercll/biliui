@@ -2,8 +2,9 @@
     <div
         class="bili-progress"
         ref="progressRef"
-        @mousedown="onMouseDown($event)"
         @mouseenter="showIcon"
+        @mousedown="onMouseDown($event)"
+        @touchstart="onMouseDown($event)"
     >
         <div class="bili-progress-wrap">
             <div class="bili-progress-bar" :style="barStyle"></div>
@@ -18,6 +19,22 @@
 
 <script lang="ts" scoped>
 import { computed, nextTick, onMounted, reactive, ref, watch, watchEffect } from "vue";
+
+function browserRedirect() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = /ipad/.test(sUserAgent);
+    var bIsIphoneOs = /iphone os/.test(sUserAgent);
+    var bIsAndroid = /android/.test(sUserAgent);
+    var bIsWM = /windows mobile/.test(sUserAgent);
+    if (bIsIpad || bIsIphoneOs || bIsAndroid || bIsWM) {
+        return true; // 移动设备
+    } else {
+        return false; // PC
+    }
+}
+
+const isMobile = browserRedirect();
+
 export default {
     props: {
         percentage: {
@@ -35,7 +52,8 @@ export default {
         const progressRef = ref(null);
         const moveData = {
             progressStart: 0,
-            mouseStart: 0,
+            mouseStartX: 0,
+            mouseStartY: 0,
             times: 0,
             isPress: false,
             offsetLeft: 0,
@@ -53,31 +71,51 @@ export default {
         });
 
         const onMouseMove = e => {
-            e.preventDefault();
+            let event = e;
+            if (isMobile) {
+                event = e.touches[0];
+            }
             if (moveData.isPress) {
-                let x = moveData.progressStart + (e.clientX - moveData.mouseStart) / moveData.times;
-                percentage.value = x;
+                const dx = event.clientX - moveData.mouseStartX; //
+                const dy = event.clientY - moveData.mouseStartY;
+                if (dx > dy) {
+                    e.preventDefault();
+                }
+                percentage.value = moveData.progressStart + dx / moveData.times;
+
                 if (percentage.value < 0) percentage.value = 0;
                 if (percentage.value > 100) percentage.value = 100;
             }
         };
         const onMouseDown = e => {
             moveData.isPress = true;
-            moveData.mouseStart = e.clientX;
-            if (/[svg|use]/.test(e.target.tagName)) {
+            let event = e;
+            if (isMobile) {
+                console.log(e);
+                event = e.touches[0];
+            }
+            moveData.mouseStartX = event.clientX;
+            moveData.mouseStartY = event.clientY;
+            if (/[svg|use]/.test(event.target.tagName)) {
                 moveData.progressStart = percentage.value;
             } else {
                 moveData.progressStart =
-                    (moveData.mouseStart - moveData.offsetLeft) / moveData.times;
+                    (moveData.mouseStartX - moveData.offsetLeft) / moveData.times;
                 percentage.value = moveData.progressStart;
             }
-
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseup", onMouseUp);
+            if (isMobile) {
+                document.addEventListener("touchmove", onMouseMove, { passive: false });
+                document.addEventListener("touchend", onMouseUp);
+            } else {
+                document.addEventListener("mousemove", onMouseMove, { passive: false });
+                document.addEventListener("mouseup", onMouseUp);
+            }
         };
 
         const onMouseUp = () => {
             moveData.isPress = false;
+            document.removeEventListener("touchmove", onMouseMove);
+            document.removeEventListener("touchend", onMouseUp);
             document.removeEventListener("mousemove", onMouseMove);
             document.removeEventListener("mouseup", onMouseUp);
         };
