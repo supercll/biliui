@@ -14,6 +14,7 @@
                 <use :xlink:href="`#icon-${xh}`" />
             </svg>
         </div>
+        {{percentage}}
     </div>
 </template>
 
@@ -47,8 +48,7 @@ export default {
         },
     },
     setup(props) {
-        const { xh } = props;
-        const percentage = ref(props.percentage);
+        const percentageC = ref(props.percentage);
         const progressRef = ref(null);
         const moveData = {
             progressStart: 0,
@@ -66,7 +66,7 @@ export default {
 
         let barStyle = computed(() => {
             return {
-                transform: `translateX(-${100 - percentage.value}%)`,
+                transform: `translateX(-${100 - percentageC.value}%)`,
             };
         });
 
@@ -81,10 +81,10 @@ export default {
                 if (dx > dy) {
                     e.preventDefault();
                 }
-                percentage.value = moveData.progressStart + dx / moveData.times;
+                percentageC.value = moveData.progressStart + dx / moveData.times;
 
-                if (percentage.value < 0) percentage.value = 0;
-                if (percentage.value > 100) percentage.value = 100;
+                if (percentageC.value < 0) percentageC.value = 0;
+                if (percentageC.value > 100) percentageC.value = 100;
             }
         };
         const onMouseDown = e => {
@@ -97,11 +97,11 @@ export default {
             moveData.mouseStartX = event.clientX;
             moveData.mouseStartY = event.clientY;
             if (/[svg|use]/.test(event.target.tagName)) {
-                moveData.progressStart = percentage.value;
+                moveData.progressStart = percentageC.value;
             } else {
                 moveData.progressStart =
                     (moveData.mouseStartX - moveData.offsetLeft) / moveData.times;
-                percentage.value = moveData.progressStart;
+                percentageC.value = moveData.progressStart;
             }
             if (isMobile) {
                 document.addEventListener("touchmove", onMouseMove, { passive: false });
@@ -124,7 +124,7 @@ export default {
             barStyle,
             onMouseDown,
             progressRef,
-            percentage,
+            percentageC,
         };
     },
 };

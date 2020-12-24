@@ -11,6 +11,9 @@
     <div>
         <Progress :percentage="percentage2" xh="lemon" />
     </div>
+    <div>
+        <Progress :percentage="percentage3" xh="christmas-hat" />
+    </div>
 </template>
 
 <script lang="ts">
@@ -24,9 +27,11 @@ export default {
     setup() {
         const percentage1 = ref(60);
         const percentage2 = ref(100);
+        const percentage3 = ref(50);
         return {
             percentage1,
             percentage2,
+            percentage3,
         };
     },
 };
