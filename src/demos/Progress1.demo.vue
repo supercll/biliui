@@ -6,10 +6,10 @@
         <Progress />
     </div>
     <div>
-        <Progress :percentage="percentage1" />
+        <Progress v-model:percentage="percentage1" />
     </div>
     <div>
-        <Progress :percentage="percentage2" />
+        <Progress v-model:percentage="percentage2" />
     </div>
     <Button @click="add">+</Button>
     <Button @click="zero">归零</Button>
@@ -26,7 +26,7 @@ export default {
 
     setup() {
         const percentage1 = ref(60);
-        const percentage2 = ref(0);
+        const percentage2 = ref(40);
         const add = () => {
             percentage2.value += 10;
             if (percentage2.value > 100) {

@@ -6,13 +6,13 @@
         <Progress />
     </div>
     <div>
-        <Progress :percentage="percentage1" xh="run" />
+        <Progress v-model:percentage="percentage1" xh="run" />
     </div>
     <div>
-        <Progress :percentage="percentage2" xh="lemon" />
+        <Progress v-model:percentage="percentage2" xh="lemon" />
     </div>
     <div>
-        <Progress :percentage="percentage3" xh="christmas-hat" />
+        <Progress v-model:percentage="percentage3" xh="christmas-hat" />
     </div>
 </template>
 

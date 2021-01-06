@@ -41,6 +41,7 @@ import {
   onMounted,
   reactive,
   ref,
+  toRefs,
   watch,
   watchEffect,
 } from "vue";
@@ -71,8 +72,10 @@ export default {
       default: "progress_tv",
     },
   },
-  setup(props) {
-    const percentageC = ref(props.percentage);
+  setup(props, ctx) {
+    // const percentageC = ref(props.percentage);
+    const {percentage} = toRefs(props);
+    // console.log(percentage)
     const progressRef = ref(null);
     const moveData = {
       progressStart: 0,
@@ -90,7 +93,7 @@ export default {
 
     let barStyle = computed(() => {
       return {
-        transform: `translateX(-${100 - percentageC.value}%)`,
+        transform: `translateX(-${100 - percentage.value}%)`,
       };
     });
 
@@ -105,10 +108,12 @@ export default {
         if (dx > dy) {
           e.preventDefault();
         }
-        percentageC.value = moveData.progressStart + dx / moveData.times;
+        // percentageC.value = moveData.progressStart + dx / moveData.times;
+        let distance = moveData.progressStart + dx / moveData.times
+        if (distance < 0) distance = 0;
+        if (distance > 100) distance = 100;
 
-        if (percentageC.value < 0) percentageC.value = 0;
-        if (percentageC.value > 100) percentageC.value = 100;
+        ctx.emit("update:percentage", Math.floor(distance));
       }
     };
     const onMouseDown = (e) => {
@@ -121,11 +126,11 @@ export default {
       moveData.mouseStartX = event.clientX;
       moveData.mouseStartY = event.clientY;
       if (/[svg|use]/.test(event.target.tagName)) {
-        moveData.progressStart = percentageC.value;
+        moveData.progressStart = percentage.value;
       } else {
         moveData.progressStart =
-          (moveData.mouseStartX - moveData.offsetLeft) / moveData.times;
-        percentageC.value = moveData.progressStart;
+          Math.floor((moveData.mouseStartX - moveData.offsetLeft) / moveData.times);
+        ctx.emit("update:percentage", moveData.progressStart);
       }
       if (isMobile) {
         document.addEventListener("touchmove", onMouseMove, { passive: false });
@@ -148,7 +153,6 @@ export default {
       barStyle,
       onMouseDown,
       progressRef,
-      percentageC,
       isMobile,
     };
   },
