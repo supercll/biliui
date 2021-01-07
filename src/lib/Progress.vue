@@ -30,7 +30,6 @@
         <use :xlink:href="`#icon-${xh}`" />
       </svg>
     </div>
-    {{ percentage }}
   </div>
 </template>
 
@@ -73,9 +72,7 @@ export default {
     },
   },
   setup(props, ctx) {
-    // const percentageC = ref(props.percentage);
     const {percentage} = toRefs(props);
-    // console.log(percentage)
     const progressRef = ref(null);
     const moveData = {
       progressStart: 0,
@@ -103,17 +100,16 @@ export default {
         event = e.touches[0];
       }
       if (moveData.isPress) {
-        const dx = event.clientX - moveData.mouseStartX; //
+        const dx = event.clientX - moveData.mouseStartX;
         const dy = event.clientY - moveData.mouseStartY;
         if (dx > dy) {
           e.preventDefault();
         }
-        // percentageC.value = moveData.progressStart + dx / moveData.times;
-        let distance = moveData.progressStart + dx / moveData.times
-        if (distance < 0) distance = 0;
-        if (distance > 100) distance = 100;
+        let currentPercentage = moveData.progressStart + dx / moveData.times
+        if (currentPercentage < 0) currentPercentage = 0;
+        if (currentPercentage > 100) currentPercentage = 100;
 
-        ctx.emit("update:percentage", Math.floor(distance));
+        ctx.emit("update:percentage", Math.floor(currentPercentage));
       }
     };
     const onMouseDown = (e) => {
