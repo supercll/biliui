@@ -3,7 +3,7 @@
     v-if="type === 'normal'"
     :class="['bili-card', `bili-card-shadow_${shadow}`]"
   >
-    <header class="bili-card-header">{{title}}</header>
+    <header class="bili-card-header">{{ title }}</header>
     <div class="bili-card-body">
       <slot />
     </div>
@@ -12,8 +12,9 @@
     v-else-if="type === 'wrap'"
     :class="['bili-card', `bili-card-shadow_${shadow}`]"
   >
+    <img class="bili-card-wrap_img" :src="imgUrl" />
     <div class="bili-card-wrap">
-      <header class="bili-card-wrap-header">{{title}}</header>
+      <header class="bili-card-wrap-header">{{ title }}</header>
       <div class="bili-card-wrap-body">
         <slot />
       </div>
@@ -35,6 +36,10 @@ export default {
       type: String,
       default: "wrap",
     },
+    imgUrl: {
+      type: String,
+      default: "img404",
+    },
   },
 
   setup(props) {},
@@ -53,8 +58,9 @@ export default {
   transition: all 0.3s ease;
   cursor: pointer;
 
-  &:hover &-wrap{
-      transform: translateY(0);
+  &:hover &-wrap {
+    transform: translateY(0);
+    background: rgba(0, 0, 0, 0.6);
   }
 
   &-shadow {
@@ -75,7 +81,7 @@ export default {
     // position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
     transform: translateY(80%);
     transition: all ease-out 0.3s;
 
@@ -87,6 +93,15 @@ export default {
       box-sizing: border-box;
       color: white;
     }
+    &-body {
+      padding: 5px 10px;
+      color: white;
+    }
+    &_img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-header {
@@ -96,6 +111,9 @@ export default {
     text-align: center;
     border-bottom: 1px solid #ebeef5;
     box-sizing: border-box;
+  }
+  &-body {
+    padding: 5px 10px;
   }
 }
 </style>
