@@ -1,3 +1,5 @@
+$bili_blue: #73c9e5;
+$bili_pink: #fb7299;
 * {
     margin: 0;
     padding: 0;
@@ -15,8 +17,6 @@ a {
 
     &:hover {
         background-color: #fee3eb;
-        margin-bottom: -1px;
-        border-bottom: 1px solid black;
         cursor: pointer;
     }
 }
@@ -43,7 +43,7 @@ body {
 }
 
 .doc-active {
-    background-color: rgba($color: #fb7299, $alpha: 0.2);
+    background-color: rgba($color: $bili_blue, $alpha: 0.6);
 }
 
 .demo {

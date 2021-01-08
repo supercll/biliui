@@ -116,7 +116,6 @@ export default {
       moveData.isPress = true;
       let event = e;
       if (isMobile) {
-        console.log(e);
         event = e.touches[0];
       }
       moveData.mouseStartX = event.clientX;
