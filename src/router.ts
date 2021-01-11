@@ -7,6 +7,7 @@ import DialogDemo from "./components/DialogDemo.vue";
 import TabsDemo from "./components/TabsDemo.vue";
 import ProgressDemo from "./components/ProgressDemo.vue";
 import CardDemo from "./components/CardDemo.vue";
+import CarouselDemo from "./components/CarouselDemo.vue";
 import DocDemo from "./components/DocDemo.vue";
 
 import { createWebHashHistory, createRouter } from "vue-router";
@@ -50,6 +51,7 @@ export const router = createRouter({
                 { path: "tabs", component: TabsDemo },
                 { path: "progress", component: ProgressDemo },
                 { path: "card", component: CardDemo },
+                { path: "carousel", component: CarouselDemo },
             ],
         },
     ],

@@ -30,6 +30,9 @@
                         <router-link to="/doc/progress">Progress</router-link>
                     </li>
                     <li>
+                        <router-link to="/doc/carousel">Carousel</router-link>
+                    </li>
+                    <li>
                         <router-link to="/doc/card">Card</router-link>
                     </li>
                     <li>

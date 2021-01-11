@@ -12,3 +12,4 @@ export { default as Dialog } from "./componets/advanced/Dialog.vue";
 export { openDialog } from "./componets/advanced/openDialog";
 export { default as Progress } from "./componets/advanced/Progress.vue";
 export { default as Card } from "./componets/advanced/Card.vue";
+export { default as Carousel } from "./componets/advanced/Carousel.vue";
