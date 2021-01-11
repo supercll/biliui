@@ -2,11 +2,13 @@
 export { Switch }; 
 // 将switch 默认的内容当做switch导出
 */
-export { default as Switch } from "./Switch.vue";
-export { default as Button } from "./Button.vue";
-export { default as Tabs } from "./Tabs.vue";
-export { default as Tab } from "./Tab.vue";
-export { default as Dialog } from "./Dialog.vue";
-export { openDialog } from "./openDialog";
-export { default as Progress } from "./Progress.vue";
-export { default as Card } from "./Card.vue";
+import "./assets/font/iconfont";
+import "./assets/style/bili.scss";
+export { default as Switch } from "./componets/basic/Switch.vue";
+export { default as Button } from "./componets/basic/Button.vue";
+export { default as Tabs } from "./componets/basic/Tabs.vue";
+export { default as Tab } from "./componets/basic/Tab.vue";
+export { default as Dialog } from "./componets/advanced/Dialog.vue";
+export { openDialog } from "./componets/advanced/openDialog";
+export { default as Progress } from "./componets/advanced/Progress.vue";
+export { default as Card } from "./componets/advanced/Card.vue";
