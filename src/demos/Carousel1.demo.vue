@@ -3,15 +3,26 @@
 </demo>
 <template>
     <div>
-        <Carousel></Carousel>
+        <Carousel>
+            <carousel-item></carousel-item>
+            <carousel-item></carousel-item>
+            <carousel-item></carousel-item>
+        </Carousel>
     </div>
 </template>
 
 <script lang="ts">
 import { Carousel } from "../lib/index";
+import { CarouselItem } from "../lib/index";
 export default {
     components: {
         Carousel,
+        CarouselItem
     },
+
+    setup() {
+        return {
+        }
+    }
 };
 </script>

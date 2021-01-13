@@ -1,14 +1,7 @@
 <template>
   <div class="bili-carousel">
     <div class="bili-carousel-container">
-      <a
-        v-for="item in list"
-        :key="item.id"
-        :href="item.linkTo"
-        target="_blank"
-      >
-        <img :src="item.imgUrl" />
-      </a>
+      <slot></slot>
     </div>
     <div class="bili-carousel-button bili-carousel-button_prev">&lt;</div>
     <div class="bili-carousel-button bili-carousel-button_next">&gt;</div>
@@ -21,24 +14,29 @@
 <script lang="ts">
 export default {
   setup() {
+    const list = [
+      {
+        id: 1,
+        imgUrl: "../../../assets/cover.jpg",
+        linkTo: "https://www.bilibili.com",
+      },
+      {
+        id: 2,
+        imgUrl: "../../../assets/cover.jpg",
+        linkTo: "https://www.bilibili.com",
+      },
+      {
+        id: 3,
+        imgUrl: "../../../assets/cover.jpg",
+        linkTo: "https://www.bilibili.com",
+      },
+    ];
+
+    const listData = {
+      currentIndex: 0,
+    };
     return {
-      list: [
-        {
-          id: 1,
-          imgUrl: "../../../assets/cover.jpg",
-          linkTo: "https://www.bilibili.com",
-        },
-        {
-          id: 2,
-          imgUrl: "../../../assets/cover.jpg",
-          linkTo: "https://www.bilibili.com",
-        },
-        {
-          id: 3,
-          imgUrl: "../../../assets/cover.jpg",
-          linkTo: "https://www.bilibili.com",
-        },
-      ],
+      list,
     };
   },
 };
@@ -48,16 +46,17 @@ export default {
   box-sizing: border-box;
   position: relative;
   width: 460px;
-  height: 200px;
+  height: 240px;
   margin: 0 5px;
-  background: rgba(115, 201, 229, 0.5);
+  background: rgba(115, 201, 229, 0.3);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
   &-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-size: 28px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(251, 114, 153, 0.4);
     cursor: pointer;
     margin: 0 5px;
     &:hover {
@@ -79,7 +78,7 @@ export default {
     height: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
 
     li {
       width: 12px;
@@ -87,29 +86,22 @@ export default {
       margin: 0 8px;
       cursor: pointer;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(251, 114, 153, 0.4);
 
       &:hover {
         background: #73c9e5;
       }
     }
+
+    &-active {
+      background: #73c9e5;
+    }
   }
 
   &-container {
     position: relative;
-    width: 100%;
     height: 100%;
     overflow: hidden;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-    a {
-      position: absolute;
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-    }
   }
 }
 </style>
