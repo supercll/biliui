@@ -4,9 +4,9 @@
 <template>
     <div>
         <Carousel>
-            <carousel-item></carousel-item>
-            <carousel-item></carousel-item>
-            <carousel-item></carousel-item>
+            <carousel-item class="container">1</carousel-item>
+            <carousel-item class="container">2</carousel-item>
+            <carousel-item class="container">3</carousel-item>
         </Carousel>
     </div>
 </template>
@@ -26,3 +26,8 @@ export default {
     }
 };
 </script>
+<style lang="scss" scoped>
+    .container {
+        text-align: center;
+    }
+</style>

@@ -10,9 +10,10 @@ export default {};
 
 <style lang="scss">
 .bili-carouselItem {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
+  background: rgba(115, 201, 229, 0.1);
   img {
     width: 100%;
     height: 100%;

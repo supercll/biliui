@@ -1,42 +1,71 @@
 <template>
   <div class="bili-carousel">
-    <div class="bili-carousel-container">
+    <div class="bili-carousel-container" :ref="getcontainerDom">
       <slot></slot>
     </div>
-    <div class="bili-carousel-button bili-carousel-button_prev">&lt;</div>
-    <div class="bili-carousel-button bili-carousel-button_next">&gt;</div>
+    <div @click="onPrev" class="bili-carousel-button bili-carousel-button_prev">&lt;</div>
+    <div @click="onNext" class="bili-carousel-button bili-carousel-button_next">
+      &gt;
+    </div>
     <ul class="bili-carousel-nav">
-      <li v-for="item in list" :key="item"></li>
+      <li v-for="item in listData.length" :key="item"></li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
+import { nextTick, onMounted, reactive, ref } from "vue";
+import DocDemoVue from "../../../components/DocDemo.vue";
 export default {
   setup() {
-    const list = [
-      {
-        id: 1,
-        imgUrl: "../../../assets/cover.jpg",
-        linkTo: "https://www.bilibili.com",
-      },
-      {
-        id: 2,
-        imgUrl: "../../../assets/cover.jpg",
-        linkTo: "https://www.bilibili.com",
-      },
-      {
-        id: 3,
-        imgUrl: "../../../assets/cover.jpg",
-        linkTo: "https://www.bilibili.com",
-      },
-    ];
-
-    const listData = {
+    let containerRef = null;
+    let sourceList = null as NodeList;
+    const getcontainerDom = (el) => (containerRef = el);
+    const listData = reactive({
+      list: [],
       currentIndex: 0,
+      length: 0,
+    });
+    onMounted(() => {
+      sourceList = document.querySelectorAll(".bili-carouselItem");
+      const list = Array.from(sourceList);
+      list.forEach((item: HTMLElement, index) => {
+        item.style.transform = `translateX(${index * 100}%)`;
+      });
+      listData.list = list;
+      listData.length = list.length;
+    });
+
+    const onRebase = () => {
+      if (listData.currentIndex >=listData.length) {
+      }
     };
+    
+    const onNext = () => {
+      let index = listData.currentIndex;
+      index++;
+      if (index >= listData.length) {
+        index = 0;
+      }
+      containerRef.style.transform = `translateX(-${index * 100}%)`;
+      listData.currentIndex = index;
+
+    };
+    const onPrev = () => {
+      let index = listData.currentIndex;
+      index--;
+      if (index < 0) {
+        index = listData.length - 1;
+      }
+      containerRef.style.transform = `translateX(-${index * 100}%)`;
+      listData.currentIndex = index;
+    };
+
     return {
-      list,
+      listData,
+      onNext,
+      onPrev,
+      getcontainerDom,
     };
   },
 };
@@ -50,6 +79,7 @@ export default {
   margin: 0 5px;
   background: rgba(115, 201, 229, 0.3);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  // overflow: hidden;
 
   &-button {
     position: absolute;
@@ -101,7 +131,7 @@ export default {
   &-container {
     position: relative;
     height: 100%;
-    overflow: hidden;
+    transition: transform 0.35s linear;
   }
 }
 </style>
