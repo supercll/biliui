@@ -3,12 +3,20 @@
     <div class="bili-carousel-container" :ref="getcontainerDom">
       <slot></slot>
     </div>
-    <div @click="onPrev" class="bili-carousel-button bili-carousel-button_prev">&lt;</div>
+    <div @click="onPrev" class="bili-carousel-button bili-carousel-button_prev">
+      &lt;
+    </div>
     <div @click="onNext" class="bili-carousel-button bili-carousel-button_next">
       &gt;
     </div>
     <ul class="bili-carousel-nav">
-      <li v-for="item in listData.length" :key="item"></li>
+      <li
+        v-for="(item, index) in listData.length"
+        :key="item"
+        :data-id="index"
+        :class="{ active: index == listData.currentIndex }"
+        @click="onToggle"
+      ></li>
     </ul>
   </div>
 </template>
@@ -21,6 +29,7 @@ export default {
     let containerRef = null;
     let sourceList = null as NodeList;
     const getcontainerDom = (el) => (containerRef = el);
+
     const listData = reactive({
       list: [],
       currentIndex: 0,
@@ -37,10 +46,10 @@ export default {
     });
 
     const onRebase = () => {
-      if (listData.currentIndex >=listData.length) {
+      if (listData.currentIndex >= listData.length) {
       }
     };
-    
+
     const onNext = () => {
       let index = listData.currentIndex;
       index++;
@@ -49,7 +58,6 @@ export default {
       }
       containerRef.style.transform = `translateX(-${index * 100}%)`;
       listData.currentIndex = index;
-
     };
     const onPrev = () => {
       let index = listData.currentIndex;
@@ -61,11 +69,19 @@ export default {
       listData.currentIndex = index;
     };
 
+
+    const onToggle = (e) => {
+      const id = e.target.dataset.id;
+      containerRef.style.transform = `translateX(-${id * 100}%)`;
+      listData.currentIndex = id;
+    }
+
     return {
       listData,
       onNext,
       onPrev,
       getcontainerDom,
+      onToggle
     };
   },
 };
@@ -79,9 +95,14 @@ export default {
   margin: 0 5px;
   background: rgba(115, 201, 229, 0.3);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  &:hover &-button {
+    visibility: visible;
+  }
   // overflow: hidden;
 
   &-button {
+    visibility: hidden;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -132,6 +153,10 @@ export default {
     position: relative;
     height: 100%;
     transition: transform 0.35s linear;
+  }
+
+  .active {
+    background: #73c9e5;
   }
 }
 </style>
