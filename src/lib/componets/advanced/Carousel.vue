@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { nextTick, onMounted, reactive, ref } from "vue";
+import { nextTick, onMounted, reactive, ref, watch } from "vue";
 import DocDemoVue from "../../../components/DocDemo.vue";
 export default {
   setup() {
@@ -56,7 +56,6 @@ export default {
       if (index >= listData.length) {
         index = 0;
       }
-      containerRef.style.transform = `translateX(-${index * 100}%)`;
       listData.currentIndex = index;
     };
     const onPrev = () => {
@@ -65,23 +64,27 @@ export default {
       if (index < 0) {
         index = listData.length - 1;
       }
-      containerRef.style.transform = `translateX(-${index * 100}%)`;
       listData.currentIndex = index;
     };
 
+    watch(
+      () => listData.currentIndex,
+      () => {
+        containerRef.style.transform = `translateX(-${listData.currentIndex * 100}%)`;
+      }
+    );
 
     const onToggle = (e) => {
       const id = e.target.dataset.id;
-      containerRef.style.transform = `translateX(-${id * 100}%)`;
       listData.currentIndex = id;
-    }
+    };
 
     return {
       listData,
       onNext,
       onPrev,
       getcontainerDom,
-      onToggle
+      onToggle,
     };
   },
 };
