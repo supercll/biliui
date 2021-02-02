@@ -1,6 +1,10 @@
 <template>
   <div class="bili-carousel">
-    <div class="bili-carousel-container" :ref="getcontainerDom">
+    <div
+      class="bili-carousel-container"
+      :class="{ tran: listData.isTran }"
+      :ref="getcontainerDom"
+    >
       <slot></slot>
     </div>
     <div @click="onPrev" class="bili-carousel-button bili-carousel-button_prev">
@@ -26,7 +30,7 @@ import { nextTick, onMounted, reactive, ref, watch } from "vue";
 import DocDemoVue from "../../../components/DocDemo.vue";
 export default {
   setup() {
-    let containerRef = null;
+    let containerRef = null as HTMLElement;
     let sourceList = null as NodeList;
     const getcontainerDom = (el) => (containerRef = el);
 
@@ -34,50 +38,84 @@ export default {
       list: [],
       currentIndex: 0,
       length: 0,
+      isTran: true,
     });
     onMounted(() => {
       sourceList = document.querySelectorAll(".bili-carouselItem");
       const list = Array.from(sourceList);
+
       list.forEach((item: HTMLElement, index) => {
         item.style.transform = `translateX(${index * 100}%)`;
       });
       listData.list = list;
       listData.length = list.length;
-    });
+      // 克隆
+      const copyDomFirst = listData.list[listData.length - 1].cloneNode(
+        true
+      ) as HTMLElement;
+      const copyDomLast = listData.list[0].cloneNode(true) as HTMLElement;
+      const firstChild = containerRef.firstElementChild;
+      containerRef.insertBefore(copyDomFirst, firstChild);
+      containerRef.appendChild(copyDomLast);
+      copyDomFirst.style.transform = `translateX(-100%)`;
+      copyDomLast.style.transform = `translateX(${list.length * 100}%)`;
+      // 监听
+      containerRef.ontransitionend = () => {
+        if (listData.currentIndex == listData.length) {
+          console.log("end");
+          listData.isTran = false;
+          containerRef.style.transform = `translateX(0%)`;
+          listData.currentIndex = 0;
 
-    const onRebase = () => {
-      if (listData.currentIndex >= listData.length) {
-      }
-    };
+          setTimeout(() => {
+            listData.isTran = true;
+          });
+        }
+        // if (listData.currentIndex == 0) {
+        //   console.log("start");
+        //   listData.isTran = false;
+        //   containerRef.style.transform = `translateX(-${
+        //     listData.length * 100
+        //   }%)`;
+        //   listData.currentIndex = listData.length - 1;
+
+        //   setTimeout(() => {
+        //     listData.isTran = true;
+        //   });
+        // }
+      };
+    });
 
     const onNext = () => {
       let index = listData.currentIndex;
       index++;
-      if (index >= listData.length) {
-        index = 0;
+
+      if (index == listData.length) {
+        containerRef.style.transform = `translateX(-${index * 100}%)`;
+      }
+      else {
+        containerRef.style.transform = `translateX(-${index * 100}%)`;
       }
       listData.currentIndex = index;
     };
     const onPrev = () => {
       let index = listData.currentIndex;
       index--;
-      if (index < 0) {
-        index = listData.length - 1;
-      }
+      containerRef.style.transform = `translateX(-${index * 100}%)`;
       listData.currentIndex = index;
     };
-
-    watch(
-      () => listData.currentIndex,
-      () => {
-        containerRef.style.transform = `translateX(-${listData.currentIndex * 100}%)`;
-      }
-    );
 
     const onToggle = (e) => {
       const id = e.target.dataset.id;
       listData.currentIndex = id;
     };
+
+    watch(
+      () => listData.currentIndex,
+      () => {
+        console.log(listData.currentIndex, listData.length);
+      }
+    );
 
     return {
       listData,
@@ -155,11 +193,13 @@ export default {
   &-container {
     position: relative;
     height: 100%;
-    transition: transform 0.35s linear;
   }
 
   .active {
     background: #73c9e5;
+  }
+  .tran {
+    transition: transform 0.35s linear;
   }
 }
 </style>
