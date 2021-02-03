@@ -67,22 +67,26 @@ export default {
           containerRef.style.transform = `translateX(0%)`;
           listData.currentIndex = 0;
 
-          setTimeout(() => {
+          let timer = setTimeout(() => {
+            clearTimeout(timer);
+            timer = null;
             listData.isTran = true;
           });
         }
-        // if (listData.currentIndex == 0) {
-        //   console.log("start");
-        //   listData.isTran = false;
-        //   containerRef.style.transform = `translateX(-${
-        //     listData.length * 100
-        //   }%)`;
-        //   listData.currentIndex = listData.length - 1;
+        if (listData.currentIndex == -1) {
+          console.log("start");
+          listData.isTran = false;
+          containerRef.style.transform = `translateX(${
+            -(listData.length - 1) * 100
+          }%)`;
+          listData.currentIndex = listData.length - 1;
 
-        //   setTimeout(() => {
-        //     listData.isTran = true;
-        //   });
-        // }
+          let timer = setTimeout(() => {
+            clearTimeout(timer);
+            timer = null;
+            listData.isTran = true;
+          });
+        }
       };
     });
 
@@ -90,18 +94,13 @@ export default {
       let index = listData.currentIndex;
       index++;
 
-      if (index == listData.length) {
-        containerRef.style.transform = `translateX(-${index * 100}%)`;
-      }
-      else {
-        containerRef.style.transform = `translateX(-${index * 100}%)`;
-      }
+      containerRef.style.transform = `translateX(-${index * 100}%)`;
       listData.currentIndex = index;
     };
     const onPrev = () => {
       let index = listData.currentIndex;
       index--;
-      containerRef.style.transform = `translateX(-${index * 100}%)`;
+      containerRef.style.transform = `translateX(${-index * 100}%)`;
       listData.currentIndex = index;
     };
 
@@ -113,7 +112,7 @@ export default {
     watch(
       () => listData.currentIndex,
       () => {
-        console.log(listData.currentIndex, listData.length);
+        console.log(containerRef.style.transform)
       }
     );
 
