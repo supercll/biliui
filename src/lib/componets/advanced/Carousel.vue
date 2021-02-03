@@ -18,7 +18,7 @@
         v-for="(item, index) in listData.length"
         :key="item"
         :data-id="index"
-        :class="{ active: index == listData.currentIndex }"
+        :class="{ active: index == listData.showIndex }"
         @click="onToggle"
       ></li>
     </ul>
@@ -36,6 +36,7 @@ export default {
 
     const listData = reactive({
       list: [],
+      showIndex: 0,
       currentIndex: 0,
       length: 0,
       isTran: true,
@@ -66,12 +67,7 @@ export default {
           listData.isTran = false;
           containerRef.style.transform = `translateX(0%)`;
           listData.currentIndex = 0;
-
-          let timer = setTimeout(() => {
-            clearTimeout(timer);
-            timer = null;
-            listData.isTran = true;
-          });
+          timeout();
         }
         if (listData.currentIndex == -1) {
           console.log("start");
@@ -80,12 +76,7 @@ export default {
             -(listData.length - 1) * 100
           }%)`;
           listData.currentIndex = listData.length - 1;
-
-          let timer = setTimeout(() => {
-            clearTimeout(timer);
-            timer = null;
-            listData.isTran = true;
-          });
+          timeout();
         }
       };
     });
@@ -93,26 +84,44 @@ export default {
     const onNext = () => {
       let index = listData.currentIndex;
       index++;
-
-      containerRef.style.transform = `translateX(-${index * 100}%)`;
       listData.currentIndex = index;
+      if (index >= listData.length) {
+        listData.showIndex = 0;
+      } else {
+        listData.showIndex = index;
+      }
     };
     const onPrev = () => {
       let index = listData.currentIndex;
       index--;
-      containerRef.style.transform = `translateX(${-index * 100}%)`;
       listData.currentIndex = index;
+      if (index < 0) {
+        listData.showIndex = listData.length - 1;
+      } else {
+        listData.showIndex = index;
+      }
     };
 
     const onToggle = (e) => {
       const id = e.target.dataset.id;
       listData.currentIndex = id;
+      listData.showIndex = id;
+    };
+
+    const timeout = () => {
+      let timer = setTimeout(() => {
+        clearTimeout(timer);
+        timer = null;
+        listData.isTran = true;
+      });
     };
 
     watch(
       () => listData.currentIndex,
       () => {
-        console.log(containerRef.style.transform)
+        containerRef.style.transform = `translateX(${
+          -listData.currentIndex * 100
+        }%)`;
       }
     );
 
@@ -139,7 +148,7 @@ export default {
   &:hover &-button {
     visibility: visible;
   }
-  // overflow: hidden;
+  overflow: hidden;
 
   &-button {
     visibility: hidden;
