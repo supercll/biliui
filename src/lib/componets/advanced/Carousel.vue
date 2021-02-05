@@ -2,7 +2,8 @@
   <div class="bili-carousel">
     <div
       class="bili-carousel-container"
-      :class="{ tran: listData.isTran }"
+      :class="{ closeTransition: listData.closeTran }"
+      :style="tranSpeed"
       :ref="getcontainerDom"
     >
       <slot></slot>
@@ -26,12 +27,18 @@
 </template>
 
 <script lang="ts">
-import { nextTick, onMounted, reactive, ref, watch } from "vue";
-import DocDemoVue from "../../../components/DocDemo.vue";
+import { computed, nextTick, onMounted, reactive, ref, watch } from "vue";
 export default {
-  setup() {
+  props: {
+    speed: {
+      type: Number,
+      default: 0.25,
+    },
+  },
+  setup(props) {
     let containerRef = null as HTMLElement;
     let sourceList = null as NodeList;
+    const { speed } = props;
     const getcontainerDom = (el) => (containerRef = el);
 
     const listData = reactive({
@@ -39,7 +46,17 @@ export default {
       showIndex: 0,
       currentIndex: 0,
       length: 0,
-      isTran: true,
+      closeTran: false,
+    });
+    const tranSpeed = computed(() => {
+      let transition = speed + "s";
+      if (speed > 1) {
+        transition = speed + "ms";
+      }
+      transition = `transform linear ${transition}`;
+      return {
+        transition,
+      };
     });
     onMounted(() => {
       sourceList = document.querySelectorAll(".bili-carouselItem");
@@ -64,14 +81,14 @@ export default {
       containerRef.ontransitionend = () => {
         if (listData.currentIndex == listData.length) {
           console.log("end");
-          listData.isTran = false;
+          listData.closeTran = true;
           containerRef.style.transform = `translateX(0%)`;
           listData.currentIndex = 0;
           timeout();
         }
         if (listData.currentIndex == -1) {
-          console.log("start");
-          listData.isTran = false;
+          console.log("start", listData.currentIndex);
+          listData.closeTran = true;
           containerRef.style.transform = `translateX(${
             -(listData.length - 1) * 100
           }%)`;
@@ -81,26 +98,26 @@ export default {
       };
     });
 
-    const onNext = () => {
-      let index = listData.currentIndex;
-      index++;
-      listData.currentIndex = index;
-      if (index >= listData.length) {
-        listData.showIndex = 0;
-      } else {
-        listData.showIndex = index;
-      }
+    const debounce = (func, wait = speed * 1000, immediate = true) => {
+      let timer = null;
+      return function anonymous(...params) {
+        let now = immediate && !timer;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          timer = null;
+          !immediate ? func.call(this, ...params) : null;
+        }, wait);
+        now ? func.call(this, ...params) : null;
+      };
     };
-    const onPrev = () => {
-      let index = listData.currentIndex;
-      index--;
-      listData.currentIndex = index;
-      if (index < 0) {
-        listData.showIndex = listData.length - 1;
-      } else {
-        listData.showIndex = index;
-      }
-    };
+
+    const onNext = debounce(() => {
+      listData.currentIndex++;
+    });
+    const onPrev = debounce(() => {
+      listData.currentIndex--;
+      console.log(listData.currentIndex);
+    });
 
     const onToggle = (e) => {
       const id = e.target.dataset.id;
@@ -112,16 +129,24 @@ export default {
       let timer = setTimeout(() => {
         clearTimeout(timer);
         timer = null;
-        listData.isTran = true;
+        listData.closeTran = false;
       });
     };
 
     watch(
       () => listData.currentIndex,
       () => {
-        containerRef.style.transform = `translateX(${
-          -listData.currentIndex * 100
-        }%)`;
+        const currentIndex = listData.currentIndex;
+        const listLength = listData.length;
+        containerRef.style.transform = `translateX(${-currentIndex * 100}%)`;
+        console.log(containerRef.style.transform, currentIndex);
+        if (currentIndex < 0) {
+          listData.showIndex = listLength - 1;
+        } else if (currentIndex >= listLength) {
+          listData.showIndex = 0;
+        } else {
+          listData.showIndex = currentIndex;
+        }
       }
     );
 
@@ -131,6 +156,8 @@ export default {
       onPrev,
       getcontainerDom,
       onToggle,
+      tranSpeed,
+      debounce,
     };
   },
 };
@@ -206,8 +233,8 @@ export default {
   .active {
     background: #73c9e5;
   }
-  .tran {
-    transition: transform 0.35s linear;
+  .closeTransition {
+    transition: none !important;
   }
 }
 </style>

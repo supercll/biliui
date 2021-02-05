@@ -3,7 +3,7 @@
 </demo>
 <template>
     <div>
-        <Carousel>
+        <Carousel :speed="speed">
             <carousel-item class="container">1</carousel-item>
             <carousel-item class="container">2</carousel-item>
             <carousel-item class="container">3</carousel-item>
@@ -22,6 +22,7 @@ export default {
 
     setup() {
         return {
+            speed: 0.25
         }
     }
 };
