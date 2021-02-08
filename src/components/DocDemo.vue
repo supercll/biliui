@@ -3,6 +3,7 @@
     <SwitchDemo />
     <ButtonDemo />
     <ProgressDemo />
+    <CarouselDemo />
     <DialogDemo />
     <TabsDemo />
 </template>
@@ -13,6 +14,7 @@ import DialogDemo from "./DialogDemo.vue";
 import SwitchDemo from "./SwitchDemo.vue";
 import TabsDemo from "./TabsDemo.vue";
 import ProgressDemo from "./ProgressDemo.vue";
+import CarouselDemo from "./CarouselDemo.vue";
 export default {
     name: "DocDemo",
     components: {
@@ -20,7 +22,8 @@ export default {
         DialogDemo,
         SwitchDemo,
         TabsDemo,
-        ProgressDemo
+        ProgressDemo,
+        CarouselDemo
     },
 };
 </script>

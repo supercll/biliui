@@ -1,5 +1,5 @@
 <template>
-    <h1 class="doc-header">Carousel 示例</h1>
+    <h1 class="doc-header">走马灯/轮播图 示例</h1>
     <Demo :component="Carousel1Demo" />
 </template>
 

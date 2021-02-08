@@ -1,5 +1,5 @@
 <template>
-  <div class="bili-carousel">
+  <div class="bili-carousel" :ref="getCarouselDom">
     <div
       class="bili-carousel-container"
       :class="{ closeTransition: listData.closeTran }"
@@ -52,11 +52,14 @@ export default {
     },
   },
   setup(props) {
+    let carouselDom = null as HTMLElement;
     let containerRef = null as HTMLElement;
     let sourceList = null as NodeList;
+    let io = null as IntersectionObserver;
     const { speed, autoDelay, timingFunction } = props;
-    const getcontainerDom = (el) => (containerRef = el);
     let autoTimer = null;
+    const getcontainerDom = (el) => (containerRef = el);
+    const getCarouselDom = (el) => (carouselDom = el);
 
     const listData = reactive({
       list: [],
@@ -112,29 +115,39 @@ export default {
         }
       };
 
-      // 自动轮播
-
-      autoPlayer();
       // 鼠标悬浮事件
-      containerRef.onmouseenter = () => {
+      carouselDom.onmouseenter = () => {
         clearInterval(autoTimer);
-      }
-      containerRef.onmouseleave = () => {
+      };
+      carouselDom.onmouseleave = () => {
         autoPlayer();
-      }
+      };
+      // 视口显示监听
+      io = new IntersectionObserver(
+        (entries) => {
+          if (!entries[0].isIntersecting) return;
+          autoPlayer();
+        },
+        { root: null, threshold: [0.5] }
+      );
+      io.observe(carouselDom);
     });
 
     onBeforeUnmount(() => {
       containerRef.ontransitionend = null;
+      carouselDom.onmouseenter = null;
+      carouselDom.onmouseleave = null;
       clearInterval(autoTimer);
       autoTimer = null;
+      io.unobserve(carouselDom); // 停止观察
+      io.disconnect(); // 关闭观察器
     });
 
     const autoPlayer = () => {
       autoTimer = setInterval(() => {
         onNext();
       }, autoDelay);
-    }
+    };
 
     const debounce = (func, wait = speed * 1000, immediate = true) => {
       let timer = null;
@@ -191,6 +204,7 @@ export default {
       onNext,
       onPrev,
       getcontainerDom,
+      getCarouselDom,
       onToggle,
       tranSpeed,
       debounce,
