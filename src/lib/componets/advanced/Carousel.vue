@@ -27,19 +27,36 @@
 </template>
 
 <script lang="ts">
-import { computed, nextTick, onMounted, reactive, ref, watch } from "vue";
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  ref,
+  watch,
+} from "vue";
 export default {
   props: {
     speed: {
       type: Number,
       default: 0.25,
     },
+    autoDelay: {
+      type: Number,
+      default: 2000,
+    },
+    timingFunction: {
+      type: String,
+      default: "linear",
+    },
   },
   setup(props) {
     let containerRef = null as HTMLElement;
     let sourceList = null as NodeList;
-    const { speed } = props;
+    const { speed, autoDelay, timingFunction } = props;
     const getcontainerDom = (el) => (containerRef = el);
+    let autoTimer = null;
 
     const listData = reactive({
       list: [],
@@ -53,7 +70,7 @@ export default {
       if (speed > 1) {
         transition = speed + "ms";
       }
-      transition = `transform linear ${transition}`;
+      transition = `transform ${timingFunction} ${transition}`;
       return {
         transition,
       };
@@ -67,7 +84,7 @@ export default {
       });
       listData.list = list;
       listData.length = list.length;
-      // 克隆
+      // 克隆首位节点
       const copyDomFirst = listData.list[listData.length - 1].cloneNode(
         true
       ) as HTMLElement;
@@ -80,14 +97,12 @@ export default {
       // 监听
       containerRef.ontransitionend = () => {
         if (listData.currentIndex == listData.length) {
-          console.log("end");
           listData.closeTran = true;
           containerRef.style.transform = `translateX(0%)`;
           listData.currentIndex = 0;
           timeout();
         }
         if (listData.currentIndex == -1) {
-          console.log("start", listData.currentIndex);
           listData.closeTran = true;
           containerRef.style.transform = `translateX(${
             -(listData.length - 1) * 100
@@ -96,7 +111,30 @@ export default {
           timeout();
         }
       };
+
+      // 自动轮播
+
+      autoPlayer();
+      // 鼠标悬浮事件
+      containerRef.onmouseenter = () => {
+        clearInterval(autoTimer);
+      }
+      containerRef.onmouseleave = () => {
+        autoPlayer();
+      }
     });
+
+    onBeforeUnmount(() => {
+      containerRef.ontransitionend = null;
+      clearInterval(autoTimer);
+      autoTimer = null;
+    });
+
+    const autoPlayer = () => {
+      autoTimer = setInterval(() => {
+        onNext();
+      }, autoDelay);
+    }
 
     const debounce = (func, wait = speed * 1000, immediate = true) => {
       let timer = null;
@@ -116,7 +154,6 @@ export default {
     });
     const onPrev = debounce(() => {
       listData.currentIndex--;
-      console.log(listData.currentIndex);
     });
 
     const onToggle = (e) => {
@@ -139,7 +176,6 @@ export default {
         const currentIndex = listData.currentIndex;
         const listLength = listData.length;
         containerRef.style.transform = `translateX(${-currentIndex * 100}%)`;
-        console.log(containerRef.style.transform, currentIndex);
         if (currentIndex < 0) {
           listData.showIndex = listLength - 1;
         } else if (currentIndex >= listLength) {
