@@ -1,5 +1,4 @@
 import { createApp } from "vue";
-import "./lib/bili.scss";
 import "./index.scss";
 import App from "./App.vue";
 import { router } from "./router";

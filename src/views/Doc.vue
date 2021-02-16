@@ -21,33 +21,27 @@
                         <router-link to="/doc">组件总览</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/switch">Switch 组件</router-link>
+                        <router-link to="/doc/switch">Switch</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/button">Button 组件</router-link>
+                        <router-link to="/doc/button">Button</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/progress">Progress</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/carousel">Carousel</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/card">Card</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/dialog">Dialog</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/tabs">Tabs</router-link>
                     </li>
 
-                    <li>
-                        <router-link to="/doc/dialog">Dialog 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/tabs">Tabs 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/progress">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/">Progress 组件</router-link>
-                    </li>
                 </ul>
             </aside>
             <main>
@@ -65,7 +59,6 @@ export default {
     components: { Topnav },
     setup() {
         const menuVisible = inject<Ref<boolean>>("xxx");
-        // console.log("Doc", menuVisible);
         return {
             menuVisible,
         };
@@ -138,4 +131,4 @@ aside {
 main {
     overflow: auto;
 }
-</style> 
+</style>

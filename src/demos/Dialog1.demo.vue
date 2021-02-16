@@ -20,7 +20,7 @@
 import { Dialog } from "../lib/index";
 import { Button } from "../lib/index";
 import { ref } from "vue";
-import { openDialog } from "../lib/openDialog";
+import { openDialog } from "../lib/index";
 export default {
     components: {
         Dialog,

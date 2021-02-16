@@ -55,9 +55,9 @@ export default {
 $h: 28px;
 $border-color: #d9d9d9;
 $color: #333;
-$biliPink: #73c9e5;
+$bili_blue: #73c9e5;
+$bili_pink: #fb7299;
 $radius: 4px;
-$red: #fb7299;
 $grey: grey;
 .bili-button {
     vertical-align: middle;
@@ -73,15 +73,15 @@ $grey: grey;
     color: $color;
     border: 1px solid $border-color;
     border-radius: $radius;
-    box-shadow: 0 1px 0 fade-out(#fb7299, 0.95);
+    box-shadow: 0 1px 0 fade-out($bili_pink, 0.95);
     transition: 250ms;
     & + & {
         margin-left: 8px;
     }
     &:hover,
     &:focus {
-        color: $biliPink;
-        border-color: $biliPink;
+        color: $bili_blue;
+        border-color: $bili_blue;
     }
     &:focus {
         outline: none;
@@ -110,10 +110,10 @@ $grey: grey;
     &.bili-theme-link {
         border-color: transparent;
         box-shadow: none;
-        color: $biliPink;
+        color: $bili_blue;
         &:hover,
         &:focus {
-            color: lighten($biliPink, 10%);
+            color: lighten($bili_blue, 10%);
         }
     }
     &.bili-theme-text {
@@ -138,48 +138,48 @@ $grey: grey;
     }
     &.bili-theme-button {
         &.bili-level-main {
-            background: $biliPink;
+            background: $bili_blue;
             color: white;
-            border-color: $biliPink;
+            border-color: $bili_blue;
             &:hover,
             &:focus {
-                background: darken($biliPink, 10%);
-                border-color: darken($biliPink, 10%);
+                background: darken($bili_blue, 10%);
+                border-color: darken($bili_blue, 10%);
             }
         }
         &.bili-level-danger {
-            background: $red;
-            border-color: $red;
+            background: $bili_pink;
+            border-color: $bili_pink;
             color: white;
             &:hover,
             &:focus {
-                background: darken($red, 10%);
-                border-color: darken($red, 10%);
+                background: darken($bili_pink, 10%);
+                border-color: darken($bili_pink, 10%);
             }
         }
     }
     &.bili-theme-link {
         &.bili-level-danger {
-            color: $red;
+            color: $bili_pink;
             &:hover,
             &:focus {
-                color: darken($red, 10%);
+                color: darken($bili_pink, 10%);
             }
         }
     }
     &.bili-theme-text {
         &.bili-level-main {
-            color: $biliPink;
+            color: $bili_blue;
             &:hover,
             &:focus {
-                color: darken($biliPink, 10%);
+                color: darken($bili_blue, 10%);
             }
         }
         &.bili-level-danger {
-            color: $red;
+            color: $bili_pink;
             &:hover,
             &:focus {
-                color: darken($red, 10%);
+                color: darken($bili_pink, 10%);
             }
         }
     }
@@ -205,7 +205,7 @@ $grey: grey;
         display: inline-block;
         margin-right: 4px;
         border-radius: 8px;
-        border-color: $biliPink $biliPink $biliPink transparent;
+        border-color: $bili_blue $bili_blue $bili_blue transparent;
         border-style: solid;
         border-width: 2px;
         animation: bili-spin 1s infinite linear;

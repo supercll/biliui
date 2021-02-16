@@ -6,18 +6,25 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18932878",
+      "name": "圣诞帽",
+      "font_class": "christmas-hat",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "14031308",
+      "name": "bilibili",
+      "font_class": "progress_tv",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
       "icon_id": "7927957",
       "name": "跑步",
       "font_class": "run",
       "unicode": "e606",
       "unicode_decimal": 58886
-    },
-    {
-      "icon_id": "14754579",
-      "name": "哔哩哔哩动画",
-      "font_class": "progress_tv",
-      "unicode": "e607",
-      "unicode_decimal": 58887
     },
     {
       "icon_id": "6487602",

@@ -17,7 +17,6 @@ export default {
     name: "Topnav",
     setup() {
         const menuVisible = inject<Ref<boolean>>("xxx");
-        // console.log("topnav", menuVisible);
         const toggleMenu = () => {
             menuVisible.value = !menuVisible.value;
         };
@@ -27,9 +26,6 @@ export default {
         const backRouter = () => {
             router.push("/");
         };
-        // const backToHome = () => {
-        //     router.push("/");
-        // };
         return {
             toggleMenu,
             path,
@@ -56,6 +52,9 @@ export default {
     .backToHome {
         float: right;
         cursor: pointer;
+        &:hover {
+            color:#73c9e5;
+        }
     }
     > .logo {
         transform: translateX(50%);

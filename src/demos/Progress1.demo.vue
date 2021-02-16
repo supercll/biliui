@@ -6,27 +6,42 @@
         <Progress />
     </div>
     <div>
-        <Progress :percentage="percentage1" />
+        <Progress v-model:percentage="percentage1" />
     </div>
     <div>
-        <Progress :percentage="percentage2" />
+        <Progress v-model:percentage="percentage2" />
     </div>
+    <Button @click="add">+</Button>
+    <Button @click="zero">归零</Button>
 </template>
 
 <script lang="ts">
 import { ref } from "vue";
-import { Progress } from "../lib/index";
+import { Progress, Button } from "../lib/index";
 export default {
     components: {
         Progress,
+        Button,
     },
 
     setup() {
         const percentage1 = ref(60);
-        const percentage2 = ref(100);
+        const percentage2 = ref(40);
+        const add = () => {
+            percentage2.value += 10;
+            if (percentage2.value > 100) {
+                percentage2.value = 100;
+            }
+        };
+        const zero = () => {
+            percentage2.value = 0;
+        };
+
         return {
             percentage1,
             percentage2,
+            add,
+            zero,
         };
     },
 };

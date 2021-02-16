@@ -32,7 +32,6 @@
 
 <script lang="ts">
 import { ref, reactive, nextTick } from "vue";
-import "./font_svg/iconfont.js";
 export default {
     name: "Switch",
     props: {
