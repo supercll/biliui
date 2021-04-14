@@ -1,22 +1,19 @@
 <template>
-  <div
-    v-if="type === 'normal'"
-    :class="['bili-card', `bili-card-shadow_${shadow}`]"
-  >
+  <div v-if="type === 'normal'" :class="['bili-card', `bili-card-shadow_${shadow}`]">
     <header class="bili-card-header">{{ title }}</header>
     <div class="bili-card-body">
-      <slot />
+      <slot name="card_body"></slot>
     </div>
   </div>
-  <div
-    v-else-if="type === 'wrap'"
-    :class="['bili-card', `bili-card-shadow_${shadow}`]"
-  >
-    <img class="bili-card-wrap_img" :src="imgUrl" />
+  <div v-else-if="type === 'wrap'" :class="['bili-card', `bili-card-shadow_${shadow}`]">
+    <!-- <img class="bili-card-wrap_img" :src="imgUrl" /> -->
+    <div class="bili-card-body">
+      <slot name="card_body"></slot>
+    </div>
     <div class="bili-card-wrap">
       <header class="bili-card-wrap-header">{{ title }}</header>
       <div class="bili-card-wrap-body">
-        <slot />
+        <slot name="card_wrap_body"></slot>
       </div>
     </div>
   </div>
@@ -26,23 +23,23 @@
 export default {
   props: {
     title: {
-      type: String,
+      type: String
     },
     shadow: {
       type: String,
-      default: "cursor",
+      default: 'cursor'
     },
     type: {
       type: String,
-      default: "wrap",
-    },
-    imgUrl: {
-      type: String,
-      default: "img404",
-    },
+      default: 'wrap'
+    }
+    // imgUrl: {
+    //   type: String,
+    //   default: "img404",
+    // },
   },
 
-  setup(props) {},
+  setup(props) {}
 };
 </script>
 
@@ -114,6 +111,7 @@ export default {
   }
   &-body {
     padding: 5px 10px;
+    position: absolute;
   }
 }
 </style>
