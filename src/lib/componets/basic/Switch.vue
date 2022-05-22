@@ -71,7 +71,7 @@ $h2: $h - 4px;
     width: $h * 2.2;
     border: none;
     background: #757575;
-    border-radius: $h/2;
+    border-radius: calc($h/2);
     position: relative;
     box-shadow: 0 0 0 3px rgba(#fb7299, 0.1);
 
