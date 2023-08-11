@@ -18,7 +18,7 @@ http://ui.lhikari.com
 
 BILI UI 是一款基于 Vue 3 和 TypeScript 编写的 UI 组件库。
 采取了哔哩哔哩的风格，将会按其颜色、logo 或者布局来展示样式
-不管是 vue3.0 还是 vue2.x 的新版本都能正常使用此组件库
+支持setup和options语法
 
 注意：
 
@@ -91,7 +91,7 @@ import { Button } from "../lib/index";
 import { Button } from "bilibili-ui";
 ```
 
-## vue2.x测试
+## options测试
 
 ![vue2.x](https://github.com/supercll/biliui/tree/master/images/1601979658891.png)
 
